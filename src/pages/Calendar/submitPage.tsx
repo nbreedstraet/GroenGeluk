@@ -10,6 +10,7 @@ type FormFields =
   | "date"
   | "time"
   | "location"
+  | "ticket_url"
   | "description";
 
 const INITIAL: Record<FormFields, string> = {
@@ -18,6 +19,7 @@ const INITIAL: Record<FormFields, string> = {
   date: "",
   time: "",
   location: "",
+  ticket_url: "",
   description: "",
 };
 
@@ -134,6 +136,7 @@ export default function SubmitPage() {
         date: form.date.trim(),
         time: form.time.trim(),
         location: form.location.trim(),
+        ticket_url: form.ticket_url.trim(),
         description: form.description,
       });
 
@@ -244,6 +247,20 @@ export default function SubmitPage() {
               placeholder="Stad, adres of online link"
               maxLength={200}
               onChange={(e) => updateField("location", e.target.value)}
+            />
+          </Field>
+
+          <Field
+            label="Ticket URL"
+            hint="Link naar de inschrijvings- of verkooppagina (optioneel)."
+          >
+            <input
+              id="ticket_url"
+              className={styles.input}
+              value={form.ticket_url}
+              placeholder="https://..."
+              maxLength={500}
+              onChange={(e) => updateField("ticket_url", e.target.value)}
             />
           </Field>
 

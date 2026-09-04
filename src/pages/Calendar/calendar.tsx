@@ -11,6 +11,7 @@ interface Event {
   date: string;
   time: string;
   location: string;
+  ticket_url?: string;
   description: string;
 }
 
@@ -19,7 +20,7 @@ function formatDate(
   t: (key: string) => string,
 ): { dag: string; maand: string } {
   const datePart = date.split("T")[0];
-  const [m, d] = datePart.split("-");
+  const [y, m, d] = datePart.split("-");
   const maanden = [
     t("calendar.months.jan"),
     t("calendar.months.feb"),
@@ -185,7 +186,17 @@ export default function Calendar() {
               <button
                 type="button"
                 className={styles.ticketButton}
-                onClick={() => navigate(`/calendar/${event.id}`)}
+                onClick={() => {
+                  if (event.ticket_url) {
+                    window.open(
+                      event.ticket_url,
+                      "_blank",
+                      "noopener,noreferrer",
+                    );
+                  } else {
+                    navigate(`/calendar/${event.id}`);
+                  }
+                }}
               >
                 {t("calendar.tickets")}
               </button>

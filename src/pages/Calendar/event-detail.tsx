@@ -11,6 +11,7 @@ interface Event {
   date: string;
   time: string;
   location: string;
+  ticket_url?: string;
   description: string;
 }
 
@@ -113,6 +114,17 @@ export default function EventDetail() {
         className={styles.description}
         dangerouslySetInnerHTML={{ __html: event.description }}
       />
+
+      {event.ticket_url && (
+        <a
+          href={event.ticket_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.ticketButton}
+        >
+          {t("event.buyTickets")}
+        </a>
+      )}
     </div>
   );
 }

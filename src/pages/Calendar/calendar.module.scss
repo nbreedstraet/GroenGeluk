@@ -102,12 +102,14 @@
 .type {
   display: inline-block;
   font-size: 0.75rem;
-  text-transform: uppercase;
-  padding: 0.25rem 0.5rem;
-  border-radius: 20px;
+  padding: 0.5rem 1rem;
   background: var(--text-color);
-  color: white;
+  color: var(--bg-color);
   font-weight: 500;
+  margin-bottom: 0.5rem;
+  border: solid 2px var(--text-color);
+  border-radius: 20px;
+  margin: 1%;
 }
 
 .location {
