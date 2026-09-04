@@ -26,7 +26,19 @@ body {
 }
 
 .intro {
-  width: 40%;
+  font-size: smaller;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: top;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 2%;
+  gap: 2%;
+}
+
+.intro p {
+  width: 80%;
 }
 
 .collageOverlay {
