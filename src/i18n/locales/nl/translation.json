@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Over ons",
+    "news": "Nieuws",
+    "calendar": "Kalender",
+    "contact": "Hoe werken we?",
+    "volunteers": "Vrijwilligers",
+    "support": "Steun ons",
+    "cause": "Goed doel van de maand",
+    "themeGreen": "Groen thema",
+    "themeBlue": "Blauw thema",
+    "themeRed": "Rood thema"
+  },
+  "home": {
+    "tickets": "Tickets nodig voor ons volgende evenement?"
+  },
+  "about": {
+    "title": "Over Groen Geluk",
+    "paragraph1": "Groen Geluk is een community‑initiatief in België (bijvoorbeeld in Leuven e.a.) dat zich richt op duurzame, sociale en plantaardige ervaringen rond samen eten en samenkomen. De organisatie promoot lokaal, biologisch en seizoensgebonden plantaardig voedsel, waarbij gemeenschappelijke maaltijden en activiteiten centraal staan.",
+    "paragraph2": "Op evenementen zoals gezamenlijke diners worden mensen uit de buurt samengebracht rond één grote tafel om te genieten van gezonde, plantaardige gerechten en sociale verbinding te stimuleren. Het project opereert vaak als non‑profit of vrijwilligersgedreven initiatief, met als doel duurzaamheid, gemeenschap en positieve, groene levensstijl te bevorderen."
+  },
+  "calendar": {
+    "loading": "Evenementen laden...",
+    "noEvents": "Er zijn nog geen evenementen.",
+    "allTypes": "Alle types",
+    "allLocations": "Alle locaties",
+    "tickets": "Evenement bekijken",
+    "months": {
+      "jan": "JAN",
+      "feb": "FEB",
+      "mar": "MAR",
+      "apr": "APR",
+      "mei": "MEI",
+      "jun": "JUN",
+      "jul": "JUL",
+      "aug": "AUG",
+      "sep": "SEP",
+      "okt": "OKT",
+      "nov": "NOV",
+      "dec": "DEC"
+    }
+  },
+  "event": {
+    "loading": "Evenement laden...",
+    "notFound": "Event niet gevonden",
+    "backToCalendar": "Terug naar kalender",
+    "back": "← Terug",
+    "date": "Datum",
+    "location": "Locatie"
+  },
+  "language": {
+    "nl": "Nederlands",
+    "en": "English",
+    "fr": "Français"
+  }
+}

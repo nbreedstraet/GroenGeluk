@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "news": "News",
+    "calendar": "Calendar",
+    "contact": "How do we work?",
+    "volunteers": "Volunteers",
+    "support": "Support",
+    "cause": "Good cause of the month",
+    "themeGreen": "Green theme",
+    "themeBlue": "Blue theme",
+    "themeRed": "Red theme"
+  },
+  "home": {
+    "tickets": "Need tickets for our next event?"
+  },
+  "about": {
+    "title": "About Groen Geluk",
+    "paragraph1": "Groen Geluk is a community initiative in Belgium (e.g. in Leuven etc.) that focuses on sustainable, social, and plant-based experiences centered around eating and gathering together. The organization promotes local, organic, and seasonal plant-based food, with communal meals and activities at its core.",
+    "paragraph2": "At events such as communal dinners, people from the neighborhood are brought together around one large table to enjoy healthy, plant-based dishes and encourage social connection. The project often operates as a non-profit or volunteer-driven initiative, aiming to promote sustainability, community, and a positive, green lifestyle."
+  },
+  "calendar": {
+    "loading": "Loading events...",
+    "noEvents": "No events yet.",
+    "allTypes": "All types",
+    "allLocations": "All locations",
+    "tickets": "View event",
+    "months": {
+      "jan": "JAN",
+      "feb": "FEB",
+      "mar": "MAR",
+      "apr": "APR",
+      "may": "MAY",
+      "jun": "JUN",
+      "jul": "JUL",
+      "aug": "AUG",
+      "sep": "SEP",
+      "oct": "OCT",
+      "nov": "NOV",
+      "dec": "DEC"
+    }
+  },
+  "event": {
+    "loading": "Loading event...",
+    "notFound": "Event not found",
+    "backToCalendar": "Back to calendar",
+    "back": "← Back",
+    "date": "Date",
+    "location": "Location"
+  },
+  "language": {
+    "nl": "Nederlands",
+    "en": "English",
+    "fr": "Français"
+  }
+}

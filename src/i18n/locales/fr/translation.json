@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "news": "Actualités",
+    "calendar": "Calendrier",
+    "contact": "Comment travaillons-nous?",
+    "volunteers": "Bénévoles",
+    "support": "Soutenez-nous",
+    "cause": "Bonne cause du mois",
+    "themeGreen": "Thème vert",
+    "themeBlue": "Thème bleu",
+    "themeRed": "Thème rouge"
+  },
+  "home": {
+    "tickets": "Besoin de billets pour notre prochain événement?"
+  },
+  "about": {
+    "title": "À propos de Groen Geluk",
+    "paragraph1": "Groen Geluk est une initiative communautaire en Belgique (par exemple à Louvain, etc.) qui se concentre sur des expériences durables, sociales et végétales autour du repas et du rassemblement. L'organisation promeut une alimentation végétale locale, biologique et de saison, avec des repas et des activités communautaires au cœur de son action.",
+    "paragraph2": "Lors d'événements tels que des dîners collectifs, les habitants du quartier sont réunis autour d'une grande table pour déguster des plats sains et végétaux et favoriser les liens sociaux. Le projet fonctionne souvent comme une initiative à but non lucratif ou bénévole, visant à promouvoir la durabilité, la communauté et un mode de vie vert et positif."
+  },
+  "calendar": {
+    "loading": "Chargement des événements...",
+    "noEvents": "Aucun événement pour l'instant.",
+    "allTypes": "Tous les types",
+    "allLocations": "Tous les lieux",
+    "tickets": "Voir l'événement",
+    "months": {
+      "jan": "JAN",
+      "feb": "FÉV",
+      "mar": "MAR",
+      "apr": "AVR",
+      "may": "MAI",
+      "jun": "JUN",
+      "jul": "JUL",
+      "aug": "AOÛ",
+      "sep": "SEP",
+      "oct": "OCT",
+      "nov": "NOV",
+      "dec": "DÉC"
+    }
+  },
+  "event": {
+    "loading": "Chargement de l'événement...",
+    "notFound": "Événement non trouvé",
+    "backToCalendar": "Retour au calendrier",
+    "back": "← Retour",
+    "date": "Date",
+    "location": "Lieu"
+  },
+  "language": {
+    "nl": "Nederlands",
+    "en": "English",
+    "fr": "Français"
+  }
+}

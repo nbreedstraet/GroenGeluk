@@ -1,0 +1,157 @@
+.alles {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  top: 5%;
+}
+
+.img {
+  height: 100%;
+  width: 15%;
+  transform: scaleX(-1);
+}
+.img2 {
+  height: 100%;
+  width: 15%;
+}
+
+h3 {
+  text-align: center;
+}
+
+.tekst {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 15%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.broodtekst {
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  padding: 0.6rem 1.5rem;
+  background: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  cursor: pointer;
+  border: 2px solid var(--text-color);
+  margin-bottom: -2px;
+  border-radius: 20px;
+  transition: opacity 0.2s;
+}
+
+.tab:hover {
+  color: var(--bg-color);
+  background-color: var(--text-color);
+  border: 2px solid var(--bg-color);
+}
+
+.tabActive {
+  border-bottom-color: var(--text-color);
+  opacity: 1;
+}
+
+.teamContent {
+  text-align: center;
+}
+
+.teamText {
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.memberList {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.memberCard {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.fotoFirst {
+  flex-direction: row;
+}
+
+.fotoFirst .memberInfo {
+  text-align: left;
+}
+
+.fotoLast {
+  flex-direction: row-reverse;
+}
+
+.fotoLast .memberInfo {
+  text-align: right;
+}
+
+.fotoLast .memberTip {
+  margin-left: auto;
+}
+
+.memberInfo {
+  flex: 1;
+}
+
+.memberName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.memberRole {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.memberTip {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 0.5rem;
+  max-width: 45ch;
+}
+
+.memberContact {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.memberFoto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--text-color);
+  flex-shrink: 0;
+  opacity: 0.3;
+}

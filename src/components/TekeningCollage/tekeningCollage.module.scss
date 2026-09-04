@@ -1,0 +1,153 @@
+.wrapper {
+  width: 100vw;
+  height: 84vh;
+  display: flex;
+}
+
+.masonry {
+  display: flex;
+  width: 100%;
+  max-height: 84vh;
+}
+
+.masonryColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  gap: 0.75rem;
+}
+
+.item {
+  position: relative;
+  overflow: visible;
+  height: 23vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent !important;
+
+  div {
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent !important;
+  }
+
+  svg {
+    width: 75%;
+    transform-origin: center;
+    top: 50%;
+    left: 50%;
+    filter: blur(0.4px);
+    background-color: transparent !important;
+  }
+
+  svg:hover {
+    transform: rotate(20deg) scale(0.98);
+    background-color: transparent !important;
+  }
+
+  p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 1%;
+    border-radius: 20px;
+    text-shadow: 0px 0px 2px white;
+    // border: var(--text-color) solid 1px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text-color);
+    pointer-events: pointer;
+  }
+}
+
+.kaderTile {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  height: 25vh;
+  aspect-ratio: 1;
+  object-fit: contain;
+  transform-origin: center;
+}
+
+.kaderPhoto {
+  inset: 0;
+  height: 60%;
+  z-index: 1;
+  clip-path: circle();
+}
+
+.kaderOverlay {
+  position: absolute;
+  z-index: 2;
+  width: 80%;
+  pointer-events: none;
+  background-color: transparent !important;
+
+  svg {
+    background-color: transparent !important;
+  }
+}
+
+.carouselBtn {
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  color: var(--text-color);
+  border: var(--text-color) solid 1px;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--text-color);
+    color: white;
+  }
+}
+
+.itemKader {
+  position: relative;
+  overflow: visible;
+  height: 23vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent !important;
+
+  svg {
+    width: 100%;
+    transform-origin: center;
+    top: 50%;
+    left: 50%;
+    background-color: transparent !important;
+  }
+}

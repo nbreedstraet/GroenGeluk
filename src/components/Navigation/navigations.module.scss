@@ -1,0 +1,197 @@
+.nav {
+  background-color: transparent !important;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  gap: 4px;
+
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+
+    &.open {
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
+}
+
+.midden {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 5vh;
+  font-family: "sofia-pro";
+  font-size: 12px;
+  gap: 15px;
+  padding: 1%;
+  transition: all 0.3s ease;
+  position: fixed;
+  background-color: transparent !important;
+  z-index: 998;
+
+  &.mobileMenuOpen {
+    display: flex;
+  }
+}
+
+.image {
+  height: 10vh;
+  background-color: transparent !important;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+  background-color: transparent;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.head {
+  padding: 0%;
+  font-family: "sofia-pro";
+  color: black;
+}
+
+.img:hover {
+  transform: rotate(90deg);
+}
+
+.topRight {
+  position: fixed;
+  top: 20px;
+  right: 60px;
+  display: flex;
+  align-items: center;
+  gap: 20%;
+  z-index: 1000;
+  background-color: transparent;
+
+  @media (max-width: 1000px) {
+    top: 70px;
+    right: 20px;
+  }
+}
+
+.themeButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.themeBtn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.active {
+    border-color: var(--text-color);
+    box-shadow:
+      0 0 0 2px var(--bg-color),
+      0 0 0 4px var(--text-color);
+  }
+}
+
+.languageButtons {
+  display: flex;
+  gap: 5px;
+}
+
+.langBtn {
+  background: transparent;
+  border: 2px solid grey;
+  color: grey;
+  padding: 2px 6px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "sofia-pro";
+  height: fit-content;
+
+  &:hover {
+    color: black;
+    border-color: black;
+  }
+
+  &.active {
+    color: black;
+    border-color: black;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 1000px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .midden {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 90%;
+    height: 100vh;
+    background-color: var(--bg-color);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 80px 20px 20px;
+    gap: 20px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+
+    &.mobileMenuOpen {
+      display: flex;
+      right: 0;
+    }
+
+    a {
+      font-size: 16px;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .languageButtons {
+      margin-left: 0;
+      margin-top: 20px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .langBtn {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  }
+}

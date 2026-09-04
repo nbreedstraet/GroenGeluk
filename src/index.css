@@ -1,0 +1,44 @@
+:root {
+  --text-color: #006837;
+  --bg-color: #f5ead2;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+}
+
+.ql-editor {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+.ql-editor a {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
