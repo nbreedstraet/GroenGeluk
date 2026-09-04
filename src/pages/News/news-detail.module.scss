@@ -14,34 +14,33 @@
 .backButton {
   display: inline-flex;
   align-items: center;
-  border: solid green;
-  border-radius: 20px;
+  border: solid 2px var(--text-color);
+  border-radius: 40px;
   cursor: pointer;
   font-size: 1rem;
-  color: #333;
+  color: var(--text-color);
   padding: 0.5rem 1rem;
-  margin-bottom: 1.5rem;
   background: none;
   line-height: 1;
 
   &:hover {
-    background-color: green;
-    color: white;
+    color: var(--bg-color);
+    border: solid 2px var(--text-color);
+    background-color: var(--text-color);
   }
 }
 
 .category {
   display: inline-block;
   font-size: 0.75rem;
-  text-transform: uppercase;
-  padding: 0.25rem 0.5rem;
-  height: fit-content;
-  background: #2e7d32;
-  color: white;
+  padding: 0.5rem 1rem;
+  background: var(--text-color);
+  color: var(--bg-color);
   font-weight: 500;
-  margin-top: 0.5%;
+  margin-bottom: 0.5rem;
+  border: solid 2px var(--text-color);
   border-radius: 20px;
-  justify-content: center;
+  margin: 1%;
 }
 
 .title {
