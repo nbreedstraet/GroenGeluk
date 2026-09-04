@@ -1,10 +1,7 @@
-import { useTranslation } from "react-i18next";
 import styles from "./home.module.scss";
 import TekeningCollage from "../../components/TekeningCollage/tekeningCollage";
 
 export default function Home() {
-  const { t } = useTranslation();
-
   return (
     <div className={styles.alles}>
       <div className={styles.basis}>
