@@ -1,9 +1,6 @@
-import { useTranslation } from "react-i18next";
 import styles from "./support.module.scss";
 
 export default function Gift() {
-  const { t } = useTranslation();
-
   return (
     <>
       <h3>Steun ons met een gift!</h3>

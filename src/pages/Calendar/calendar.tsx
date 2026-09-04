@@ -19,7 +19,7 @@ function formatDate(
   t: (key: string) => string,
 ): { dag: string; maand: string } {
   const datePart = date.split("T")[0];
-  const [y, m, d] = datePart.split("-");
+  const [m, d] = datePart.split("-");
   const maanden = [
     t("calendar.months.jan"),
     t("calendar.months.feb"),

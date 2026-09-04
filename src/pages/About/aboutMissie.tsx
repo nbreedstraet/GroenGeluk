@@ -1,9 +1,6 @@
-import { useTranslation } from "react-i18next";
 import styles from "./about.module.scss";
 
 export default function AboutMissie() {
-  const { t } = useTranslation();
-
   return (
     <>
       <h3>Onze missie en visie</h3>

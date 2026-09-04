@@ -1,9 +1,6 @@
-import { useTranslation } from "react-i18next";
 import styles from "./volunteers.module.scss";
 
 export default function Volunteer() {
-  const { t } = useTranslation();
-
   return (
     <div className={styles.alles}>
       <div className={styles.tekst}>
