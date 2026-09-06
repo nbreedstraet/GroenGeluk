@@ -230,6 +230,10 @@ a {
 
   .desktopMenu {
     display: none;
+
+    &.desktopMenuOpen {
+      display: none;
+    }
   }
 
   .midden {
