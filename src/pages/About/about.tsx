@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./about.module.scss";
 import AboutWatWedoen from "./aboutWatwedoen";
 import AboutTeam from "./aboutTeam";
@@ -8,6 +9,7 @@ type Tab = "overons" | "team" | "missie";
 
 export default function About() {
   const [tab, setTab] = useState<Tab>("overons");
+  const { t } = useTranslation();
 
   return (
     <div className={styles.alles}>
@@ -18,21 +20,21 @@ export default function About() {
             className={`${styles.tab} ${tab === "overons" ? styles.tabActive : ""}`}
             onClick={() => setTab("overons")}
           >
-            Over Groen Geluk
+            {t("about.tabOverons")}
           </button>
           <button
             type="button"
             className={`${styles.tab} ${tab === "missie" ? styles.tabActive : ""}`}
             onClick={() => setTab("missie")}
           >
-            Onze missie en visie
+            {t("about.tabMissie")}
           </button>
           <button
             type="button"
             className={`${styles.tab} ${tab === "team" ? styles.tabActive : ""}`}
             onClick={() => setTab("team")}
           >
-            Team
+            {t("about.tabTeam")}
           </button>
         </div>
 

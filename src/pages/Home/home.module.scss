@@ -27,9 +27,9 @@ body {
 
 .intro {
   font-size: smaller;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: center;
   align-items: top;
   padding-left: 10%;
   padding-right: 10%;
@@ -43,7 +43,7 @@ body {
 
 .collageOverlay {
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 0;
   width: 100vw;
   height: 100vh;

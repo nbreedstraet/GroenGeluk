@@ -5,6 +5,17 @@ import { useTheme, themes } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher/languageSwitcher";
 
+const navItems = [
+  { key: "nav.home", to: "/home" },
+  { key: "nav.about", to: "/about" },
+  { key: "nav.news", to: "/news" },
+  { key: "nav.calendar", to: "/calendar" },
+  { key: "nav.contact", to: "/werking" },
+  { key: "nav.volunteers", to: "/volunteers" },
+  { key: "nav.support", to: "/support" },
+  { key: "nav.cause", to: "/cause" },
+];
+
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -20,8 +31,48 @@ const Navigation = () => {
     red: "/Images/HorizontalLogo-68.svg",
   };
 
+  const themeButtons = (
+    <div className={styles.themeButtons}>
+      <button
+        className={`${styles.themeBtn} ${theme === "green" ? styles.active : ""}`}
+        onClick={() => setTheme("green")}
+        style={{
+          backgroundColor: themes.green.text,
+          color: themes.green.background,
+        }}
+        title={t("nav.themeGreen")}
+      />
+      <button
+        className={`${styles.themeBtn} ${theme === "blue" ? styles.active : ""}`}
+        onClick={() => setTheme("blue")}
+        style={{
+          backgroundColor: themes.blue.text,
+          color: themes.blue.background,
+        }}
+        title={t("nav.themeBlue")}
+      />
+      <button
+        className={`${styles.themeBtn} ${theme === "red" ? styles.active : ""}`}
+        onClick={() => setTheme("red")}
+        style={{
+          backgroundColor: themes.red.text,
+          color: themes.red.background,
+        }}
+        title={t("nav.themeRed")}
+      />
+    </div>
+  );
+
   return (
     <nav className={styles.nav}>
+      <Link
+        to="/home"
+        className={styles.mobileLogo}
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <img src={themeImages[theme]} alt="Thema" className={styles.image} />
+      </Link>
+
       <div className={styles.hamburger} onClick={toggleMenu}>
         <div className={`${styles.bar} ${isMenuOpen ? styles.open : ""}`}></div>
         <div className={`${styles.bar} ${isMenuOpen ? styles.open : ""}`}></div>
@@ -34,62 +85,53 @@ const Navigation = () => {
         }`}
         style={{ zIndex: 999 }}
       >
-        <Link to="/Home" onClick={() => setIsMenuOpen(false)}>
+        <Link
+          to="/home"
+          className={styles.navLogo}
+          onClick={() => setIsMenuOpen(false)}
+        >
           <img src={themeImages[theme]} alt="Thema" className={styles.image} />
         </Link>
-        {/* <Link to="/about" onClick={() => setIsMenuOpen(false)}>
-          {t("nav.about")}
-        </Link>
-        <Link to="/news" onClick={() => setIsMenuOpen(false)}>
-          {t("nav.news")}
-        </Link>
-        <Link to="/calendar" onClick={() => setIsMenuOpen(false)}>
-          {t("nav.calendar")}
-        </Link>
-        <Link to="/werking" onClick={() => setIsMenuOpen(false)}>
-          {t("nav.werking")}
-        </Link>
-        <Link to="/volunteers" onClick={() => setIsMenuOpen(false)}>
-          {t("nav.volunteers")}
-        </Link>
-        <Link to="/support" onClick={() => setIsMenuOpen(false)}>
-          {t("nav.support")}
-        </Link> */}
+        {navItems.map((item) => (
+          <Link
+            key={item.key}
+            to={item.to}
+            className={styles.navLink}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {t(item.key)}
+          </Link>
+        ))}
+        <div className={styles.mobileMenuBottom}>
+          <div className={styles.languageButtons}>
+            <LanguageSwitcher />
+          </div>
+          {themeButtons}
+        </div>
+      </div>
+
+      <div
+        className={`${styles.desktopMenu} ${
+          isMenuOpen ? styles.desktopMenuOpen : ""
+        }`}
+      >
+        {navItems.map((item) => (
+          <Link
+            key={item.key}
+            to={item.to}
+            className={styles.desktopMenuLink}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {t(item.key)}
+          </Link>
+        ))}
       </div>
 
       <div className={styles.topRight}>
         <div className={styles.languageButtons}>
           <LanguageSwitcher />
         </div>
-        <div className={styles.themeButtons}>
-          <button
-            className={`${styles.themeBtn} ${theme === "green" ? styles.active : ""}`}
-            onClick={() => setTheme("green")}
-            style={{
-              backgroundColor: themes.green.text,
-              color: themes.green.background,
-            }}
-            title={t("nav.themeGreen")}
-          />
-          <button
-            className={`${styles.themeBtn} ${theme === "blue" ? styles.active : ""}`}
-            onClick={() => setTheme("blue")}
-            style={{
-              backgroundColor: themes.blue.text,
-              color: themes.blue.background,
-            }}
-            title={t("nav.themeBlue")}
-          />
-          <button
-            className={`${styles.themeBtn} ${theme === "red" ? styles.active : ""}`}
-            onClick={() => setTheme("red")}
-            style={{
-              backgroundColor: themes.red.text,
-              color: themes.red.background,
-            }}
-            title={t("nav.themeRed")}
-          />
-        </div>
+        {themeButtons}
       </div>
     </nav>
   );

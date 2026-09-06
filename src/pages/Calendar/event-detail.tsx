@@ -15,22 +15,26 @@ interface Event {
   description: string;
 }
 
-function formatFullDate(date: string, time: string): string {
+function formatFullDate(
+  date: string,
+  time: string,
+  t: (key: string) => string,
+): string {
   const [y, m, d] = date.split("-");
   if (!y || !m || !d) return date;
   const months = [
-    "januari",
-    "februari",
-    "maart",
-    "april",
-    "mei",
-    "juni",
-    "juli",
-    "augustus",
-    "september",
-    "oktober",
-    "november",
-    "december",
+    t("event.months.january"),
+    t("event.months.february"),
+    t("event.months.march"),
+    t("event.months.april"),
+    t("event.months.may"),
+    t("event.months.june"),
+    t("event.months.july"),
+    t("event.months.august"),
+    t("event.months.september"),
+    t("event.months.october"),
+    t("event.months.november"),
+    t("event.months.december"),
   ];
   const dag = parseInt(d, 10);
   const maand = months[parseInt(m, 10) - 1] ?? "???";
@@ -103,11 +107,21 @@ export default function EventDetail() {
       <div className={styles.info}>
         <p>
           <strong>{t("event.date")}:</strong>{" "}
-          {formatFullDate(event.date, event.time)}
+          {formatFullDate(event.date, event.time, t)}
         </p>
         <p>
           <strong>{t("event.location")}:</strong> {event.location}
         </p>
+        {event.ticket_url && (
+          <a
+            href={event.ticket_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.ticketButton}
+          >
+            {t("event.buyTickets")}
+          </a>
+        )}
       </div>
 
       <div

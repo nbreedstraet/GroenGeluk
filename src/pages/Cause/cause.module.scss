@@ -1,6 +1,6 @@
 .alles {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-content: center;
   width: 100%;
   min-height: 100vh;
@@ -20,9 +20,15 @@
   width: 15%;
   transform: scaleX(-1);
 }
+
 .img2 {
   height: 100%;
   width: 15%;
+}
+
+.img3 {
+  width: 50%;
+  padding-bottom: 5%;
 }
 
 h3 {
@@ -36,12 +42,28 @@ h3 {
   padding: 15%;
   width: 100%;
   box-sizing: border-box;
+  padding-bottom: 5%;
+}
+
+.tekst2 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 15%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 0%;
+  align-items: center;
 }
 
 .broodtekst {
   display: flex;
   flex-direction: row;
   gap: 2%;
+}
+
+a {
+  text-decoration: underline;
 }
 
 .tabs {
@@ -154,4 +176,9 @@ h3 {
   background: var(--text-color);
   flex-shrink: 0;
   opacity: 0.3;
+}
+
+.left,
+.right {
+  width: 50%;
 }

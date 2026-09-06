@@ -93,7 +93,9 @@ export default function Calendar() {
   if (error) {
     return (
       <div className={styles.alles}>
-        <p>Fout bij laden: {error}</p>
+        <p>
+          {t("calendar.loadError")} {error}
+        </p>
       </div>
     );
   }
@@ -108,26 +110,16 @@ export default function Calendar() {
 
   return (
     <div className={styles.alles}>
-      <div className={styles.intro}>
-        Elke maand organiseren we afwisselend een buffet in de Stelplaats of een
-        gezellig diner in de Maakleerplek, evenals een kookworkshop. Af en toe
-        gaan we met Groen Geluk op verplaatsing en koken we op uitnodiging én in
-        samenwerking met. <br />
-        <br />
-        In dit overzicht ontdek je waar en wanneer je de komende tijd je voeten
-        onder tafel kunt schuiven voor een schoon bordje Groen Geluk. Klik door
-        op een evenement voor alle praktische info. De inschrijvingslink vind je
-        zowel op de eventpagina zelf als in de bio op onze Instagram.{" "}
-        <strong>
-          Let wel: inschrijven is pas effectief mogelijk vanaf het aangekondigde
-          moment, steeds een week op voorhand rond 18u.
-        </strong>
-        <br />
-        <br />
-        <strong>Allergie of intolerantie?</strong>
-        Laat het ons op voorhand even weten via het inschrijfformulier. We
-        proberen daar in de keuken altijd zo goed mogelijk rekening mee te
-        houden, al kunnen we helaas niet altijd honderd procent garantie geven.
+<div className={styles.intro}>
+        <p>{t("calendar.intro1")}</p>
+        <p>
+          {t("calendar.intro2")}{" "}
+          <strong>{t("calendar.intro2Strong")}</strong>
+        </p>
+        <p>
+          <strong>{t("calendar.intro3Strong")}</strong>
+          {t("calendar.intro3")}
+        </p>
       </div>
       <div className={styles.filters}>
         <select

@@ -36,12 +36,23 @@ h3 {
   padding: 15%;
   width: 100%;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    padding-top: 5%;
+  }
 }
 
 .broodtekst {
   display: flex;
   flex-direction: row;
   gap: 2%;
+}
+
+.left,
+.right {
+  width: 50%;
 }
 
 .tabs {

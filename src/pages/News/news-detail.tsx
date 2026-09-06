@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./news-detail.module.scss";
 
@@ -15,6 +16,7 @@ type NewsItem = {
 export default function NewsDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [item, setItem] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -45,9 +47,9 @@ export default function NewsDetail() {
   if (!item) {
     return (
       <div className={styles.container}>
-        <h1>Artikel niet gevonden</h1>
+        <h1>{t("news.notFound")}</h1>
         <button className={styles.backButton} onClick={() => navigate("/news")}>
-          Terug naar nieuws
+          {t("news.backToNews")}
         </button>
       </div>
     );
@@ -57,13 +59,15 @@ export default function NewsDetail() {
     <div className={styles.container}>
       <div className={styles.containerButtons}>
         <button className={styles.backButton} onClick={() => navigate("/news")}>
-          ← Terug naar overzicht
+          {t("news.backToOverview")}
         </button>
         <span className={styles.category}>{item.category}</span>
       </div>
       <h1 className={styles.title}>{item.title}</h1>
 
-      <p className={styles.author}>Door {item.schrijver}</p>
+      <p className={styles.author}>
+        {t("news.by", { name: item.schrijver })}
+      </p>
 
       <div
         className={styles.content}

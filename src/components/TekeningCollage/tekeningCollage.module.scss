@@ -23,6 +23,7 @@
   position: relative;
   overflow: visible;
   height: 23vh;
+  text-align: center;
 
   display: flex;
   align-items: center;
@@ -149,5 +150,11 @@
     top: 50%;
     left: 50%;
     background-color: transparent !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .item {
+    display: none;
   }
 }

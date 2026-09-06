@@ -4,6 +4,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import QuillEditor from "../../components/QuillEditor/quillEditor";
 
@@ -27,6 +28,7 @@ const INITIAL: Record<FormFields, string> = {
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function SubmitPage() {
+  const { t } = useTranslation();
   const [form, setForm] = useState<Record<FormFields, string>>(INITIAL);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -51,22 +53,22 @@ export default function SubmitPage() {
 
   const validate = (): string | null => {
     if (!form.title.trim()) {
-      return "Vul een titel in.";
+      return t("news.form.requiredTitle");
     }
 
     if (!form.schrijver.trim()) {
-      return "Vul de naam van de schrijver in.";
+      return t("news.form.requiredAuthor");
     }
 
     if (!form.category.trim()) {
-      return "Kies een categorie.";
+      return t("news.form.requiredCategory");
     }
 
     const emptyQuill =
       !form.content || form.content.replace(/<(.|\n)*?>/g, "").trim() === "";
 
     if (emptyQuill) {
-      return "Het artikel mag niet leeg zijn.";
+      return t("news.form.requiredContent");
     }
 
     return null;
@@ -102,9 +104,10 @@ export default function SubmitPage() {
       setForm(INITIAL);
       setStatus("success");
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Onbekende fout";
+      const message =
+        err instanceof Error ? err.message : t("news.form.unknownError");
       console.error(err);
-      showError("Opslaan mislukt: " + message);
+      showError(t("news.form.saveError") + message);
     }
   }
 
@@ -114,14 +117,12 @@ export default function SubmitPage() {
         <div style={s.successBox}>
           <div style={s.successIcon}>✓</div>
 
-          <h2 style={s.successTitle}>Artikel ingediend</h2>
+          <h2 style={s.successTitle}>{t("news.form.successTitle")}</h2>
 
-          <p style={s.successBody}>
-            Bedankt! Je artikel is opgeslagen en wordt nagekeken.
-          </p>
+          <p style={s.successBody}>{t("news.form.successBody")}</p>
 
           <button type="button" style={s.btnPrimary} onClick={reset}>
-            Nog een artikel indienen
+            {t("news.form.submitAnother")}
           </button>
         </div>
       </div>
@@ -132,13 +133,11 @@ export default function SubmitPage() {
     <div style={s.page}>
       <form style={s.card} onSubmit={handleSubmit}>
         <header style={s.header}>
-          <p style={s.eyebrow}>Bijdrage</p>
+          <p style={s.eyebrow}>{t("news.form.eyebrow")}</p>
 
-          <h1 style={s.heading}>Artikel indienen</h1>
+          <h1 style={s.heading}>{t("news.form.heading")}</h1>
 
-          <p style={s.subheading}>
-            Deel je verhaal over een goed doel. Velden met * zijn verplicht.
-          </p>
+          <p style={s.subheading}>{t("news.form.subheading")}</p>
         </header>
 
         <div style={s.divider} />
@@ -152,54 +151,57 @@ export default function SubmitPage() {
         )}
 
         <div style={s.fields}>
-          <Field label="Titel *">
+          <Field label={t("news.form.titleField")}>
             <input
               id="title"
               style={s.input}
               value={form.title}
-              placeholder="Titel van je artikel"
+              placeholder={t("news.form.titlePlaceholder")}
               maxLength={200}
               onChange={(e) => updateField("title", e.target.value)}
             />
           </Field>
 
-          <Field label="Schrijver *">
+          <Field label={t("news.form.authorField")}>
             <input
               id="schrijver"
               style={s.input}
               value={form.schrijver}
-              placeholder="Volledige naam"
+              placeholder={t("news.form.authorPlaceholder")}
               maxLength={100}
               onChange={(e) => updateField("schrijver", e.target.value)}
             />
           </Field>
 
-          <Field label="Categorie *">
+          <Field label={t("news.form.categoryField")}>
             <select
               style={s.input}
               value={form.category}
               onChange={(e) => updateField("category", e.target.value)}
             >
-              <option value="">Kies categorie</option>
-              <option value="Goede Doelen">Goede Doelen</option>
-              <option value="Recepten">Recepten</option>
-              <option value="Opinie">Opinie</option>
+              <option value="">{t("news.form.categoryPlaceholder")}</option>
+              <option value="Goede Doelen">
+                {t("news.form.categoryGoodCauses")}
+              </option>
+              <option value="Recepten">{t("news.form.categoryRecipes")}</option>
+              <option value="Opinie">{t("news.form.categoryOpinion")}</option>
             </select>
           </Field>
 
           <Field
-            label="Inhoud *"
-            hint="Opmaak zoals vet en lijsten blijft behouden."
+            label={t("news.form.contentField")}
+            hint={t("news.form.richTextHint")}
           >
             <QuillEditor
               value={form.content}
+              placeholder={t("news.form.contentPlaceholder")}
               onChange={(value: string) => updateField("content", value)}
             />
           </Field>
 
           <Field
-            label="Contactgegevens goed doel"
-            hint="Website, email of telefoonnummer."
+            label={t("news.form.contactField")}
+            hint={t("news.form.contactHint")}
           >
             <input
               style={s.input}
@@ -211,7 +213,7 @@ export default function SubmitPage() {
             />
           </Field>
 
-          <Field label="Bronnen" hint="Eén bron per regel.">
+          <Field label={t("news.form.sourcesField")} hint={t("news.form.sourcesHint")}>
             <textarea
               style={{
                 ...s.input,
@@ -237,7 +239,9 @@ export default function SubmitPage() {
                 : s.btnPrimary
             }
           >
-            {status === "loading" ? "Opslaan..." : "Artikel indienen"}
+            {status === "loading"
+              ? t("news.form.saving")
+              : t("news.form.submit")}
           </button>
 
           <button
@@ -246,7 +250,7 @@ export default function SubmitPage() {
             disabled={status === "loading"}
             onClick={reset}
           >
-            Wissen
+            {t("news.form.clear")}
           </button>
         </div>
       </form>

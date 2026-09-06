@@ -76,7 +76,11 @@ export default function EventsList() {
   }
 
   if (error) {
-    return <p>Fout bij laden: {error}</p>;
+    return (
+      <p>
+        {t("calendar.loadError")} {error}
+      </p>
+    );
   }
 
   if (events.length === 0) {

@@ -1,17 +1,17 @@
 .alles {
   padding: 2rem;
-  max-width: 900px;
+  max-width: 90%;
   padding-top: 7rem;
   margin: 0 auto;
 }
 
 .intro {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 2rem;
+  flex-direction: row;
   padding-top: 2rem;
-  font-size: small;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  gap: 2%;
 }
 
 .titel {

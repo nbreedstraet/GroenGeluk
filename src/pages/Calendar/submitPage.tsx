@@ -1,4 +1,5 @@
 import { useState, useRef, type FormEvent, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import type { QuillEditorHandle } from "../../components/QuillEditor/quillEditor";
 import { supabase } from "../../lib/supabaseClient";
 import QuillEditor from "../../components/QuillEditor/quillEditor";
@@ -26,6 +27,7 @@ const INITIAL: Record<FormFields, string> = {
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function SubmitPage() {
+  const { t } = useTranslation();
   const quillRef = useRef<QuillEditorHandle>(null);
   const [form, setForm] = useState<Record<FormFields, string>>(INITIAL);
   const [uploadedFotos, setUploadedFotos] = useState<string[]>([]);
@@ -66,7 +68,7 @@ export default function SubmitPage() {
 
     if (error) {
       console.error(error);
-      showError("Foto uploaden mislukt: " + error.message);
+      showError(t("calendar.form.uploadError") + error.message);
       setUploading(false);
       return;
     }
@@ -86,23 +88,23 @@ export default function SubmitPage() {
 
   const validate = (): string | null => {
     if (!form.title.trim()) {
-      return "Vul een titel in.";
+      return t("calendar.form.requiredTitle");
     }
 
     if (!form.type.trim()) {
-      return "Vul het type evenement in.";
+      return t("calendar.form.requiredType");
     }
 
     if (!form.date.trim()) {
-      return "Vul een datum in.";
+      return t("calendar.form.requiredDate");
     }
 
     if (!form.time.trim()) {
-      return "Vul een uur in.";
+      return t("calendar.form.requiredTime");
     }
 
     if (!form.location.trim()) {
-      return "Vul een locatie in.";
+      return t("calendar.form.requiredLocation");
     }
 
     const emptyQuill =
@@ -110,7 +112,7 @@ export default function SubmitPage() {
       form.description.replace(/<(.|\n)*?>/g, "").trim() === "";
 
     if (emptyQuill) {
-      return "De beschrijving mag niet leeg zijn.";
+      return t("calendar.form.requiredDescription");
     }
 
     return null;
@@ -147,9 +149,10 @@ export default function SubmitPage() {
       setForm(INITIAL);
       setStatus("success");
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Onbekende fout";
+      const message =
+        err instanceof Error ? err.message : t("calendar.form.unknownError");
       console.error(err);
-      showError("Opslaan mislukt: " + message);
+      showError(t("calendar.form.saveError") + message);
     }
   }
 
@@ -159,14 +162,14 @@ export default function SubmitPage() {
         <div className={styles.successBox}>
           <div className={styles.successIcon}>✓</div>
 
-          <h2 className={styles.successTitle}>Evenement ingediend</h2>
+          <h2 className={styles.successTitle}>
+            {t("calendar.form.successTitle")}
+          </h2>
 
-          <p className={styles.successBody}>
-            Bedankt! Je evenement is opgeslagen en wordt nagekeken.
-          </p>
+          <p className={styles.successBody}>{t("calendar.form.successBody")}</p>
 
           <button type="button" className={styles.btnPrimary} onClick={reset}>
-            Nog een evenement indienen
+            {t("calendar.form.submitAnother")}
           </button>
         </div>
       </div>
@@ -177,13 +180,11 @@ export default function SubmitPage() {
     <div className={styles.page}>
       <form className={styles.card} onSubmit={handleSubmit}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Bijdrage</p>
+          <p className={styles.eyebrow}>{t("calendar.form.eyebrow")}</p>
 
-          <h1 className={styles.heading}>Evenement indienen</h1>
+          <h1 className={styles.heading}>{t("calendar.form.heading")}</h1>
 
-          <p className={styles.subheading}>
-            Voeg een evenement toe aan de kalender. Velden met * zijn verplicht.
-          </p>
+          <p className={styles.subheading}>{t("calendar.form.subheading")}</p>
         </header>
 
         <div className={styles.divider} />
@@ -197,29 +198,29 @@ export default function SubmitPage() {
         )}
 
         <div className={styles.fields}>
-          <Field label="Titel *">
+          <Field label={t("calendar.form.titleField")}>
             <input
               id="title"
               className={styles.input}
               value={form.title}
-              placeholder="Titel van het evenement"
+              placeholder={t("calendar.form.titlePlaceholder")}
               maxLength={200}
               onChange={(e) => updateField("title", e.target.value)}
             />
           </Field>
 
-          <Field label="Type *">
+          <Field label={t("calendar.form.typeField")}>
             <input
               id="type"
               className={styles.input}
               value={form.type}
-              placeholder="Bijv. Workshop, Lezing, Expositie"
+              placeholder={t("calendar.form.typePlaceholder")}
               maxLength={100}
               onChange={(e) => updateField("type", e.target.value)}
             />
           </Field>
 
-          <Field label="Datum *">
+          <Field label={t("calendar.form.dateField")}>
             <input
               id="datum"
               type="date"
@@ -229,7 +230,7 @@ export default function SubmitPage() {
             />
           </Field>
 
-          <Field label="Uur *">
+          <Field label={t("calendar.form.timeField")}>
             <input
               id="time"
               type="time"
@@ -239,20 +240,20 @@ export default function SubmitPage() {
             />
           </Field>
 
-          <Field label="Locatie *">
+          <Field label={t("calendar.form.locationField")}>
             <input
               id="location"
               className={styles.input}
               value={form.location}
-              placeholder="Stad, adres of online link"
+              placeholder={t("calendar.form.locationPlaceholder")}
               maxLength={200}
               onChange={(e) => updateField("location", e.target.value)}
             />
           </Field>
 
           <Field
-            label="Ticket URL"
-            hint="Link naar de inschrijvings- of verkooppagina (optioneel)."
+            label={t("calendar.form.ticketUrlField")}
+            hint={t("calendar.form.ticketUrlHint")}
           >
             <input
               id="ticket_url"
@@ -265,24 +266,27 @@ export default function SubmitPage() {
           </Field>
 
           <Field
-            label="Beschrijving *"
-            hint="Opmaak zoals vet en lijsten blijft behouden."
+            label={t("calendar.form.descriptionField")}
+            hint={t("calendar.form.richTextHint")}
           >
             <QuillEditor
               ref={quillRef}
               bucket="events-images"
               value={form.description}
+              placeholder={t("calendar.form.descriptionPlaceholder")}
               onChange={(value: string) => updateField("description", value)}
             />
           </Field>
 
           <Field
-            label="Foto's"
-            hint="Foto's worden in de beschrijving ingevoegd."
+            label={t("calendar.form.photosField")}
+            hint={t("calendar.form.photosHint")}
           >
             <div className={styles.fotoUploadArea}>
               <label className={styles.uploadBtn}>
-                {uploading ? "Bezig met uploaden..." : "Foto kiezen"}
+                {uploading
+                  ? t("calendar.form.uploading")
+                  : t("calendar.form.choosePhoto")}
                 <input
                   type="file"
                   accept="image/*"
@@ -320,7 +324,9 @@ export default function SubmitPage() {
             disabled={status === "loading"}
             className={`${styles.btnPrimary} ${status === "loading" ? styles.btnDisabled : ""}`}
           >
-            {status === "loading" ? "Opslaan..." : "Evenement indienen"}
+            {status === "loading"
+              ? t("calendar.form.saving")
+              : t("calendar.form.submit")}
           </button>
 
           <button
@@ -329,7 +335,7 @@ export default function SubmitPage() {
             disabled={status === "loading"}
             onClick={reset}
           >
-            Wissen
+            {t("calendar.form.clear")}
           </button>
         </div>
       </form>

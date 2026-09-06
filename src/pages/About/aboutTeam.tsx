@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./about.module.scss";
 
@@ -13,6 +14,7 @@ interface Member {
 export default function AboutTeam() {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchMembers() {
@@ -31,8 +33,8 @@ export default function AboutTeam() {
   if (loading) {
     return (
       <div className={styles.teamContent}>
-        <h3>Team</h3>
-        <p className={styles.teamText}>Laden...</p>
+        <h3>{t("about.tabTeam")}</h3>
+        <p className={styles.teamText}>{t("about.teamLoading")}</p>
       </div>
     );
   }
@@ -40,15 +42,15 @@ export default function AboutTeam() {
   if (members.length === 0) {
     return (
       <div className={styles.teamContent}>
-        <h3>Team</h3>
-        <p className={styles.teamText}>Nog geen teamleden.</p>
+        <h3>{t("about.tabTeam")}</h3>
+        <p className={styles.teamText}>{t("about.teamEmpty")}</p>
       </div>
     );
   }
 
   return (
     <div className={styles.teamContent}>
-      <h3>Team</h3>
+      <h3>{t("about.tabTeam")}</h3>
       <div className={styles.memberList}>
         {members.map((member, index) => (
           <div
@@ -60,8 +62,7 @@ export default function AboutTeam() {
               <h4 className={styles.memberName}>{member.fullName}</h4>
               <p className={styles.memberRole}>{member.role}</p>
               <p className={styles.memberTip}>
-                {" "}
-                My favorite vegan tip: <br />
+                {t("about.teamTipLabel")} <br />
                 {member.favoriteVeganTip}
               </p>
               <p className={styles.memberContact}>{member.contact}</p>

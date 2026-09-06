@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./news.module.scss";
 
@@ -25,8 +26,10 @@ function summarize(text: string, maxLen = 200): string {
 
 export default function News() {
   const [items, setItems] = useState<NewsItem[]>([]);
-  const [filter, setFilter] = useState("alle");
+  const [filter, setFilter] = useState("Alle");
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const allCategories = t("news.allCategories");
 
   useEffect(() => {
     async function loadNews() {
@@ -49,22 +52,19 @@ export default function News() {
   }, []);
 
   const categories = [
-    "alle",
+    allCategories,
     ...new Set(items.map((i) => i.category).filter(Boolean)),
   ];
 
   const filtered =
-    filter === "alle" ? items : items.filter((i) => i.category === filter);
+    filter === allCategories
+      ? items
+      : items.filter((i) => i.category === filter);
 
   return (
     <>
       <div className={styles.marges}>
-        <div className={styles.intro}>
-          Op deze plek delen we met veel plezier al onze kleine en grote
-          verhalen. Van boeiende gesprekken met partners en geëngageerde
-          gezichten achter het goede doel van de maand, tot onze blik op wat er
-          beweegt in de wereld en onze favoriete seizoensgebonden recepten.
-        </div>
+        <div className={styles.intro}>{t("news.intro")}</div>
         <div className={styles.filterBar}>
           {categories.map((cat) => (
             <button
@@ -88,11 +88,13 @@ export default function News() {
 
               <h2>{item.title}</h2>
 
-              <p className={styles.author}>Door {item.schrijver}</p>
+              <p className={styles.author}>
+                {t("news.by", { name: item.schrijver })}
+              </p>
 
               <p className={styles.summary}>{summarize(item.content)}</p>
 
-              <span className={styles.readMore}>Lees meer →</span>
+              <span className={styles.readMore}>{t("news.readMore")}</span>
             </article>
           ))}
         </div>

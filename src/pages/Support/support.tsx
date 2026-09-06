@@ -1,31 +1,21 @@
+import { useTranslation } from "react-i18next";
 import styles from "./support.module.scss";
 
 export default function Support() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.alles}>
       <div className={styles.tekst}>
-        <h3>Steun ons met een gift!</h3>
+        <h3>{t("support.title")}</h3>
         <div className={styles.broodtekst}>
-          <div className={styles.left}>
-            We stoppen al onze tijd, liefde en energie in het koken voor onze
-            maandelijkse goede doelen. Groen Geluk draait daarbij volledig op
-            vrijwillige inzet: ook ons vaste team wordt niet vergoed. Om dit
-            alles te kunnen blijven doen en onze edities en workshops
-            toegankelijk te houden, heeft onze eigen werking af en toe ook wat
-            extra ademruimte nodig.
-          </div>
-          <div className={styles.right}>
-            Wil je ons helpen om de vaste kosten te dekken, keukenmateriaal te
-            vernieuwen of simpelweg ons concept te laten groeien? Dan kan je ons
-            enorm vooruithelpen met een vrije gift. Elk bedrag, groot of klein,
-            vloeit rechtstreeks terug in de algemene werking van Groen Geluk,
-            zodat wij met evenveel enthousiasme kunnen blijven koken voor een
-            betere wereld. Dikke merci voor jouw steun!
-          </div>
+          <div className={styles.left}>{t("support.left")}</div>
+          <div className={styles.right}>{t("support.right")}</div>
         </div>
         <div className={styles.extraInfo}>
-          <strong>Rekeningnummer:</strong> BE67 7310 6463 2687 <br />
-          <br /> <strong>Mededeling:</strong> Vrije gift Groen Geluk
+          <strong>{t("support.account")}</strong> {t("support.iban")} <br />
+          <br /> <strong>{t("support.message")}</strong>{" "}
+          {t("support.giftMessage")}
         </div>
       </div>
     </div>

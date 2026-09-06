@@ -28,7 +28,6 @@ const links = [
   { key: "nav.contact", link: "/werking" },
   { key: "nav.support", link: "/support" },
   { key: "nav.volunteers", link: "/volunteers" },
-  { key: "nav.cause", link: "/cause" },
 ];
 
 function shuffle<T>(arr: T[]): T[] {
@@ -114,11 +113,13 @@ function KaderTile({
   bucket,
   color,
   link,
+  t,
 }: {
   svgRaw: string;
   bucket: string;
   color: string;
   link?: string;
+  t: (key: string) => string;
 }) {
   const [photos, setPhotos] = useState<string[]>([]);
   const [index, setIndex] = useState(0);
@@ -152,7 +153,7 @@ function KaderTile({
       <button
         className={`${styles.carouselBtn} ${styles.carouselBtnPrev}`}
         onClick={prev}
-        aria-label="Vorige foto"
+        aria-label={t("tekeningCollage.prevPhoto")}
       >
         ‹
       </button>
@@ -167,7 +168,7 @@ function KaderTile({
       <button
         className={`${styles.carouselBtn} ${styles.carouselBtnNext}`}
         onClick={next}
-        aria-label="Volgende foto"
+        aria-label={t("tekeningCollage.nextPhoto")}
       >
         ›
       </button>
@@ -189,7 +190,11 @@ function KaderTile({
   return <div className={styles.kaderTile}>{content}</div>;
 }
 
-export default function TekeningCollage() {
+export default function TekeningCollage({
+  intro,
+}: {
+  intro?: React.ReactNode;
+}) {
   const { theme } = useTheme();
   const { t } = useTranslation();
   const color = themes[theme].text;
@@ -197,11 +202,11 @@ export default function TekeningCollage() {
   const [shuffled] = useState(() => shuffle(allSvgContents));
 
   const collageItems = useMemo(() => {
-    const tekeningen = shuffled.slice(0, links.length).map((svg, i) => ({
+    const tekeningen = links.map((link, i) => ({
       type: "tekening" as const,
       id: `tekening-${i}`,
-      html: processSvg(svg, color),
-      link: links[i % links.length],
+      html: processSvg(shuffled[i % shuffled.length], color),
+      link,
     }));
 
     const kaders = KADERS.map((kader, i) => ({
@@ -210,8 +215,27 @@ export default function TekeningCollage() {
       ...kader,
     }));
 
-    return shuffle([...tekeningen, ...kaders]);
-  }, [color, shuffled]);
+    // Vaste volgorde: links (tekst) altijd op dezelfde plek,
+    // kaders er tussendoor op vaste posities.
+    const items: (typeof tekeningen[number] | typeof kaders[number])[] = [
+      tekeningen[0],
+      tekeningen[1],
+      kaders[0],
+      tekeningen[2],
+      tekeningen[3],
+      kaders[1],
+      tekeningen[4],
+      tekeningen[5],
+    ];
+
+    return intro
+      ? [
+          { type: "intro" as const, id: "intro", content: intro },
+          ...items,
+        ]
+      : items;
+  }, [color, shuffled, intro]);
+
   return (
     <div className={styles.wrapper}>
       <Masonry
@@ -229,6 +253,14 @@ export default function TekeningCollage() {
             );
           }
 
+          if (item.type === "intro") {
+            return (
+              <div key={item.id} className={styles.itemIntro}>
+                {item.content}
+              </div>
+            );
+          }
+
           return (
             <div key={item.id} className={styles.itemKader}>
               <KaderTile
@@ -236,6 +268,7 @@ export default function TekeningCollage() {
                 bucket={item.bucket}
                 color={color}
                 link={item.link}
+                t={t}
               />
             </div>
           );

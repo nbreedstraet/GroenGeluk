@@ -5,6 +5,7 @@ import {
   forwardRef,
 } from "react";
 import Quill from "quill";
+import { useTranslation } from "react-i18next";
 import "quill/dist/quill.snow.css";
 import { supabase } from "../../lib/supabaseClient";
 
@@ -21,6 +22,7 @@ interface Props {
   value: string;
   onChange: (html: string) => void;
   bucket?: string;
+  placeholder?: string;
 }
 
 export interface QuillEditorHandle {
@@ -28,7 +30,8 @@ export interface QuillEditorHandle {
 }
 
 const QuillEditor = forwardRef<QuillEditorHandle, Props>(
-  ({ value, onChange, bucket = "article-images" }, ref) => {
+  ({ value, onChange, bucket = "article-images", placeholder }, ref) => {
+    const { t } = useTranslation();
     const containerRef = useRef<HTMLDivElement>(null);
     const quillRef = useRef<Quill | null>(null);
 
@@ -50,7 +53,7 @@ const QuillEditor = forwardRef<QuillEditorHandle, Props>(
 
       const quill = new Quill(container, {
         theme: "snow",
-        placeholder: "Schrijf je artikel hier...",
+        placeholder: placeholder ?? t("quillEditor.placeholder"),
         modules: {
           toolbar: {
             container: TOOLBAR,
