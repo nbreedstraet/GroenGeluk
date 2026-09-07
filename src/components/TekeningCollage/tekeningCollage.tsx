@@ -41,6 +41,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 const breakpointColumns = {
   default: 3,
+  1000: 1,
   900: 2,
   500: 1,
 };

@@ -85,3 +85,11 @@
     background-color: var(--text-color);
   }
 }
+
+@media (max-width: 1000px) {
+  .container {
+    margin-top: 6rem;
+    padding: 1rem;
+    max-width: 100%;
+  }
+}

@@ -160,3 +160,47 @@ h3 {
   flex-shrink: 0;
   opacity: 0.3;
 }
+
+@media (max-width: 1000px) {
+  .alles {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tekst {
+    padding: 6rem 6% 2rem;
+    width: 100%;
+  }
+
+  .broodtekst {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .memberCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .fotoLast {
+    flex-direction: column;
+  }
+
+  .fotoLast .memberInfo {
+    text-align: center;
+  }
+
+  .fotoLast .memberTip {
+    margin-left: 0;
+  }
+}

@@ -66,3 +66,16 @@
     margin: 1rem auto;
   }
 }
+
+@media (max-width: 1000px) {
+  .container {
+    padding: 1rem;
+    max-width: 100%;
+    padding-top: 6rem;
+  }
+
+  .containerButtons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

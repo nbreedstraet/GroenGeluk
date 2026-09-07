@@ -54,18 +54,21 @@ body {
 
 @media (max-width: 1000px) {
   .collageOverlay {
-    top: 0;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
+    position: absolute;
+    top: 12vh;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 12vh);
+    height: calc(100dvh - 12vh);
+    overflow-y: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
 
   .intro {
-    padding-top: 5%;
-    width: 85%;
+    padding-top: 0;
+    width: 90%;
     margin: 0 auto;
     font-size: smaller;
   }
@@ -92,6 +95,11 @@ body {
   z-index: 99;
   width: 150px;
   height: 70px;
+}
+
+a,
+button {
+  text-decoration: none;
 }
 
 .containerfooter {
