@@ -26,7 +26,6 @@ body {
 }
 
 .intro {
-  font-size: smaller;
   // display: flex;
   // flex-direction: row;
   // justify-content: center;
@@ -35,10 +34,6 @@ body {
   padding-right: 10%;
   padding-top: 2%;
   gap: 2%;
-}
-
-.intro p {
-  width: 80%;
 }
 
 .collageOverlay {
@@ -55,11 +50,11 @@ body {
 @media (max-width: 1000px) {
   .collageOverlay {
     position: absolute;
-    top: 12vh;
+    top: calc(10vh + 10px + 1rem);
     left: 0;
     width: 100vw;
-    height: calc(100vh - 12vh);
-    height: calc(100dvh - 12vh);
+    height: calc(100vh - 10vh - 10px - 1rem);
+    height: calc(100dvh - 10vh - 10px - 1rem);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -67,10 +62,10 @@ body {
   }
 
   .intro {
-    padding-top: 0;
+    padding: 0;
     width: 90%;
     margin: 0 auto;
-    font-size: smaller;
+    box-sizing: border-box;
   }
 
   .intro p {
