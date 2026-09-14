@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./calendar.module.scss";
+import PageBackground from "../../components/PageBackground/pageBackground";
+import svg1 from "../../assets/tekeningen/Tekening-19.svg?raw";
+import svg2 from "../../assets/tekeningen/Tekening-20.svg?raw";
 
 interface Event {
   id: number;
@@ -110,7 +113,8 @@ export default function Calendar() {
 
   return (
     <div className={styles.alles}>
-<div className={styles.intro}>
+      <PageBackground svgRaws={[svg1, svg2]} />
+      <div className={styles.intro}>
         <p>{t("calendar.intro1")}</p>
         <p>
           {t("calendar.intro2")}{" "}
@@ -195,6 +199,18 @@ export default function Calendar() {
             </div>
           );
         })}
+      </div>
+
+      <div className={styles.crossLinks}>
+        <Link to="/news" className={styles.crossLink}>
+          {t("calendar.crossNews")}
+        </Link>
+        <Link to="/support" className={styles.crossLink}>
+          {t("calendar.crossSupport")}
+        </Link>
+        <Link to="/cause" className={styles.crossLink}>
+          {t("calendar.crossCause")}
+        </Link>
       </div>
     </div>
   );

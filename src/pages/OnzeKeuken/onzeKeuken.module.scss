@@ -36,43 +36,6 @@
   padding-top: 10rem;
 }
 
-.filterBar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 2rem;
-  padding-bottom: 0;
-}
-
-.filterBtn {
-  display: inline-block;
-  font-size: 0.8rem;
-  border: solid 2px;
-  padding: 0.3rem 0.9rem;
-  border-radius: 20px;
-  cursor: pointer;
-  background: none;
-  font: inherit;
-  transition:
-    background 0.15s,
-    color 0.15s;
-
-  &:hover {
-    background: #e0e0e0;
-  }
-}
-
-.active {
-  background: var(--text-color);
-  color: var(--bg-color);
-  border-color: solid 2px var(--text-color);
-
-  &:hover {
-    background: var(--text-color);
-    border-color: solid 2px var(--text-color);
-  }
-}
-
 .alles {
   column-count: 3;
   column-gap: 1.5rem;

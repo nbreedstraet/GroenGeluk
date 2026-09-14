@@ -1,9 +1,11 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import Navigation from "./components/Navigation/navigation";
+import Footer from "./components/Footer/footer";
 import Home from "./pages/Home/home";
 import About from "./pages/About/about";
 import News from "./pages/News/news";
 import NewsDetail from "./pages/News/news-detail";
+import OnzeKeuken from "./pages/OnzeKeuken/onzeKeuken";
 import Calendar from "./pages/Calendar/calendar";
 import EventDetail from "./pages/Calendar/event-detail";
 import CalendarSubmit from "./pages/Calendar/submitPage";
@@ -17,16 +19,20 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <>
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Navigation />
-        <Outlet />
-      </>
+        <main style={{ flex: 1 }}>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     ),
     children: [
       { index: true, element: <Home /> },
       { path: "home", element: <Home /> },
       { path: "about", element: <About /> },
       { path: "news", element: <News /> },
+      { path: "keuken", element: <OnzeKeuken /> },
       { path: "news/:id", element: <NewsDetail /> },
       { path: "calendar", element: <Calendar /> },
       { path: "calendar/:id", element: <EventDetail /> },

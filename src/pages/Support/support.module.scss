@@ -4,6 +4,29 @@
   align-content: center;
   width: 100%;
   min-height: 100vh;
+  position: relative;
+}
+
+.crossLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
+.crossLink {
+  padding: 0.5rem 1.2rem;
+  border: 2px solid var(--text-color);
+  border-radius: 20px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+  }
 }
 
 .container {

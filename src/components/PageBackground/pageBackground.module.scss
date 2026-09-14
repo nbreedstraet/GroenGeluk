@@ -1,0 +1,27 @@
+.background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 30;
+  background: transparent;
+}
+
+.item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.item svg {
+  display: block;
+  background: transparent;
+}
+
+@media (max-width: 1000px) {
+  .background {
+    display: none;
+  }
+}

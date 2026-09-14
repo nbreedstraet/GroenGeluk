@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
-import styles from "./news.module.scss";
+import styles from "./onzeKeuken.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-17.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-18.svg?raw";
@@ -27,18 +27,17 @@ function summarize(text: string, maxLen = 200): string {
   return clean.slice(0, maxLen).trimEnd() + "…";
 }
 
-export default function News() {
+export default function OnzeKeuken() {
   const [items, setItems] = useState<NewsItem[]>([]);
-  const [filter, setFilter] = useState("Alle");
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const allCategories = t("news.allCategories");
 
   useEffect(() => {
-    async function loadNews() {
+    async function loadRecipes() {
       const { data, error } = await supabase
         .from("ImagesGoodCauses")
         .select("*")
+        .eq("category", "Recepten")
         .order("createdAt", {
           ascending: false,
         });
@@ -48,41 +47,20 @@ export default function News() {
         return;
       }
 
-      setItems((data ?? []).filter((i) => i.category !== "Recepten"));
+      setItems(data ?? []);
     }
 
-    loadNews();
+    loadRecipes();
   }, []);
-
-  const categories = [
-    allCategories,
-    ...new Set(items.map((i) => i.category).filter(Boolean)),
-  ];
-
-  const filtered =
-    filter === allCategories
-      ? items
-      : items.filter((i) => i.category === filter);
 
   return (
     <>
       <div className={styles.marges}>
         <PageBackground svgRaws={[svg1, svg2]} />
-        <div className={styles.intro}>{t("news.intro")}</div>
-        <div className={styles.filterBar}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`${styles.filterBtn} ${filter === cat ? styles.active : ""}`}
-              onClick={() => setFilter(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        <div className={styles.intro}>{t("keuken.intro")}</div>
 
         <div className={styles.alles}>
-          {filtered.map((item) => (
+          {items.map((item) => (
             <article
               key={item.id}
               className={styles.card}

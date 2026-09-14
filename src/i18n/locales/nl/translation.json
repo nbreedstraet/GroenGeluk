@@ -3,6 +3,7 @@
     "home": "Home",
     "about": "Over ons",
     "news": "Nieuws",
+    "keuken": "Onze keuken",
     "calendar": "Kalender",
     "contact": "Hoe werken we?",
     "volunteers": "Help als vrijwilliger bij Groen Geluk",
@@ -19,7 +20,8 @@
   },
   "tekeningCollage": {
     "prevPhoto": "Vorige foto",
-    "nextPhoto": "Volgende foto"
+    "nextPhoto": "Volgende foto",
+    "behindTheScenes": "Kijkje achter de schermen"
   },
   "about": {
     "title": "Over Groen Geluk",
@@ -35,10 +37,13 @@
     "missieRight": "Wij dromen van een samenleving waarin voeding niet alleen gezond en duurzaam is, maar ook een bron van solidariteit en verbinding. Groen Geluk wil een katalysator zijn voor verandering: een organisatie die boer en burger dichter bij elkaar brengt, kwaliteitsvolle seizoensgebonden maaltijden aanbiedt aan iedereen, ongeacht financiële mogelijkheden, en bewustwording rond de rol van voeding in een meer rechtvaardige en ecologisch verantwoorde wereld stimuleert.",
     "teamLoading": "Laden...",
     "teamEmpty": "Nog geen teamleden.",
-    "teamTipLabel": "Mijn favoriete vegan tip:"
+    "teamTipLabel": "Mijn favoriete vegan tip:",
+    "crossCalendar": "Bekijk onze kalender",
+    "crossSupport": "Steun ons met een gift",
+    "crossVolunteers": "Word vrijwilliger"
   },
   "news": {
-    "intro": "Op deze plek delen we met veel plezier al onze kleine en grote verhalen. Van boeiende gesprekken met partners en geëngageerde gezichten achter het goede doel van de maand, tot onze blik op wat er beweegt in de wereld en onze favoriete seizoensgebonden recepten.",
+    "intro": "Op deze plek delen we met veel plezier al onze kleine en grote verhalen. Van boeiende gesprekken met partners en geëngageerde gezichten achter het goede doel van de maand, tot onze blik op wat er beweegt in de wereld.",
     "allCategories": "Alle",
     "by": "Door {{name}}",
     "readMore": "Lees meer →",
@@ -77,7 +82,12 @@
       "saving": "Opslaan...",
       "submit": "Artikel indienen",
       "clear": "Wissen"
-    }
+    },
+    "crossCalendar": "Bekijk onze kalender",
+    "crossAbout": "Leer ons beter kennen"
+  },
+  "keuken": {
+    "intro": "In onze keuken delen we met veel plezier onze favoriete seizoensgebonden recepten. Van hartige stoofpotjes tot kleurrijke salades: kook je graag mee met eerlijke, plantaardige gerechten, dan zit je hier goed."
   },
   "calendar": {
     "loading": "Evenementen laden...",
@@ -141,7 +151,10 @@
       "saving": "Opslaan...",
       "submit": "Evenement indienen",
       "clear": "Wissen"
-    }
+    },
+    "crossNews": "Lees onze verhalen",
+    "crossSupport": "Steun ons met een gift",
+    "crossCause": "Ontdek het goede doel van de maand"
   },
   "event": {
     "loading": "Evenement laden...",
@@ -177,7 +190,10 @@
     "dinerText2": "MAAKLEERPLEK - Stapelhuisstraat 13-15, 3000 Leuven",
     "workshopsTitle": "Kookworkshops in de Maakleerplek",
     "workshopsText1": "Eén keer per maand organiseren we een kleinschalige kookworkshop voor een groep van een 10-tal personen. Hier geven we met plezier onze kennis over de plantaardige keuken door, zodat je ontdekt hoe eenvoudig het is om thuis zelf mee aan de slag te gaan. We werken voor de inschrijvingen met een sliding scale: sociaal tarief (26 euro), basistarief (32 euro) en solidair tarief (38 euro).",
-    "workshopsText2": "De workshops hebben voor ons niet als doel opbrengst binnen te halen. Indien we hier toch winst uit halen, dan gaat dit integraal naar onze algemene werking."
+    "workshopsText2": "De workshops hebben voor ons niet als doel opbrengst binnen te halen. Indien we hier toch winst uit halen, dan gaat dit integraal naar onze algemene werking.",
+    "crossCalendar": "Bekijk onze kalender",
+    "crossSupport": "Steun ons met een gift",
+    "crossVolunteers": "Word vrijwilliger"
   },
   "support": {
     "title": "Steun ons met een gift!",
@@ -186,26 +202,45 @@
     "account": "Rekeningnummer:",
     "iban": "BE67 7310 6463 2687",
     "message": "Mededeling:",
-    "giftMessage": "Vrije gift Groen Geluk"
+    "giftMessage": "Vrije gift Groen Geluk",
+    "crossVolunteers": "Word vrijwilliger bij Groen Geluk",
+    "crossCalendar": "Bekijk onze kalender",
+    "crossAbout": "Leer ons beter kennen"
   },
   "volunteers": {
     "title": "Help als vrijwilliger!",
     "left": "Groen Geluk draait volledig op onze warme groep vrijwilligers. Goesting om ook de handen uit de mouwen te steken? Laat hieronder je gegevens achter, dan voegen we je toe aan onze WhatsApp-groep waarin we alle shiften en oproepen delen. Kom je helpen, dan mag je steeds aanschuiven voor een gratis bordje Groen Geluk.",
     "right": "Of je nu helpt in de keuken, mee de zaal in duikt of helpt met de afwas na afloop: alle handen zijn ontzettend welkom. Je hebt absoluut geen ervaring nodig, goesting om samen iets moois neer te zetten is meer dan genoeg. Alvast welkom bij ons team!",
-    "cta": "Schrijf je hier in!"
+    "cta": "Schrijf je hier in!",
+    "crossAbout": "Leer ons beter kennen",
+    "crossSupport": "Steun ons met een gift",
+    "crossCalendar": "Bekijk onze kalender"
   },
   "cause": {
     "title": "Goed doel van de maand",
-    "left": "Bij Groen Geluk is koken nooit een doel op zich, maar een krachtig middel om verandering in beweging te zetten. Elke maand zetten we de schouders onder één specifiek goed doel dat onze waarden deelt en keihard werkt aan een warmere, eerlijkere wereld. Dat doen we niet alleen door onze opbrengst te schenken. Bij elke editie zoeken we een actieve samenwerking op met de organisatie van die maand. Je vindt de mensen achter het goed doel dan ook gezellig bij ons op de vloer: ze koken mee in de keuken, helpen in de bediening of schuiven mee aan tafel.",
-    "right": "Zo draag je door bij ons te komen eten niet alleen rechtstreeks bij aan hun organisatie, maar leer je het gezicht en het verhaal achter het initiatief ook een stukje beter kennen.",
+    "left": "Bij Groen Geluk is koken nooit een doel op zich, maar een krachtig middel om verandering in beweging te zetten. Elke maand zetten we de schouders onder één specifiek goed doel dat onze waarden deelt en keihard werkt aan een warmere, eerlijkere wereld. Dat doen we niet alleen door onze opbrengst te schenken. Bij elke editie zoeken we een actieve samenwerking op met de organisatie van die maand.",
+    "right": " Je vindt de mensen achter het goed doel dan ook gezellig bij ons op de vloer: ze koken mee in de keuken, helpen in de bediening of schuiven mee aan tafel. Zo draag je door bij ons te komen eten niet alleen rechtstreeks bij aan hun organisatie, maar leer je het gezicht en het verhaal achter het initiatief ook een stukje beter kennen.",
     "featuredTitle": "In de kijker: Compagnie Cordial",
     "featuredLeft": "In september zetten we met heel veel liefde de schijnwerpers op Compagnie Cordial. Compagnie Cordial vzw slaat een prachtige brug tussen nieuwkomers in België en lokale organisaties. Zij helpen nieuwe inwoners bij het vinden van betekenisvol vrijwilligerswerk en koppelen hen aan organisaties die inclusiever willen worden. Via het vrijwilligerswerk krijgen nieuwkomers de kans om op een fijne manier Nederlands te oefenen, de stad te ontdekken en een nieuw netwerk op te bouwen. Tegelijkertijd worden organisaties verrijkt met geëngageerde krachten en worden ze een betere afspiegeling van onze diverse samenleving. (©️Compagnie Cordial vzw) Dat ontmoeten op ooghoogte en samen de handen uit de mouwen steken sluit naadloos aan bij waar Groen Geluk voor staat.",
     "featuredRight1": "Op woensdag 9 september koken we samen met Compagnie Cordial in het Leuvense STUK. Schuif deze maand mee aan tafel, sla een praatje met de mensen van Compagnie Cordial en geef deze fantastische organisatie samen met ons een extra duwtje in de rug. Wil je alvast meer ontdekken over hun werking? Neem dan zeker een kijkje op",
     "featuredRightWebsite": "hun website",
-    "featuredRight2": "Opgelet: de inschrijvingen voor het diner op woensdag 9/09 zijn ondertussen reeds volzet. Hou onze agenda in de gaten voor komende edities. De inschrijvingen openen steeds een week op voorhand rond 18u."
+    "featuredRight2": "Opgelet: de inschrijvingen voor het diner op woensdag 9/09 zijn ondertussen reeds volzet. Hou onze agenda in de gaten voor komende edities. De inschrijvingen openen steeds een week op voorhand rond 18u.",
+    "crossCalendar": "Bekijk onze kalender",
+    "crossAbout": "Leer ons beter kennen",
+    "crossSupport": "Steun ons met een gift"
   },
   "quillEditor": {
     "placeholder": "Schrijf je tekst hier..."
+  },
+  "footer": {
+    "sitemap": "Website-map",
+    "info": "Contact",
+    "infoPlaceholder": "Groen Geluk vzw",
+    "adresfirst": "Maakleerplek",
+    "adressecond": "Stapelhuisstraat 13-15, 3000 Leuven",
+    "mail": "info@groengelukvzw.be",
+    "rekening": "BE 1035.253.581",
+    "copyright": "© 2026 Groen Geluk vzw — Alle rechten voorbehouden."
   },
   "language": {
     "nl": "Nederlands",

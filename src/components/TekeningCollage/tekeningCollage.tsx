@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Masonry from "react-masonry-css";
 import { useTheme, themes } from "../../context/ThemeContext";
 import { supabase } from "../../lib/supabaseClient";
+import { processSvg } from "../../lib/processSvg";
 import styles from "./tekeningCollage.module.scss";
 
 const svgModules = import.meta.glob("../../assets/tekeningen/*.svg", {
@@ -17,13 +18,19 @@ import kader09Raw from "../../assets/kaders/Kaders-09.svg?raw";
 import kader10Raw from "../../assets/kaders/Kaders-10.svg?raw";
 
 const KADERS = [
-  { svgRaw: kader09Raw, bucket: "GroenGelukImages" },
+  {
+    svgRaw: kader09Raw,
+    bucket: "GroenGelukImages",
+    link: "https://myalbum.com/album/4AZv7iXYHRFyda/?invite=b0ddf165-a833-45c1-b446-50af44b9ad27",
+    labelKey: "tekeningCollage.behindTheScenes",
+  },
   { svgRaw: kader10Raw, bucket: "GroenGelukGoedeDoelen", link: "/cause" },
 ];
 
 const links = [
   { key: "nav.about", link: "/about" },
   { key: "nav.news", link: "/news" },
+  { key: "nav.keuken", link: "/keuken" },
   { key: "nav.calendar", link: "/calendar" },
   { key: "nav.contact", link: "/werking" },
   { key: "nav.support", link: "/support" },
@@ -45,21 +52,6 @@ const breakpointColumns = {
   900: 2,
   500: 1,
 };
-
-function processSvg(svg: string, color: string): string {
-  let html = svg;
-  html = html.replace(/<style>[\s\S]*?<\/style>/gi, "");
-  html = html.replace(/#006837/gi, color);
-  html = html.replace(/stroke="#00000000?"/gi, `stroke="${color}"`);
-  html = html.replace(/\s(width|height)="[^"]*"/g, "");
-  html = html.replace(/<svg\b/, '<svg width="100%" height="auto"');
-  html = html.replace(/<svg\b/, '<svg overflow="visible"');
-  html = html.replace(
-    "</svg>",
-    `<style>path, polygon, rect, circle, ellipse, line, polyline { fill: ${color}; stroke: none; }</style></svg>`,
-  );
-  return html;
-}
 
 function processKaderSvg(svg: string, color: string): string {
   let html = svg;
@@ -114,12 +106,14 @@ function KaderTile({
   bucket,
   color,
   link,
+  label,
   t,
 }: {
   svgRaw: string;
   bucket: string;
   color: string;
   link?: string;
+  label?: string;
   t: (key: string) => string;
 }) {
   const [photos, setPhotos] = useState<string[]>([]);
@@ -177,10 +171,24 @@ function KaderTile({
         className={styles.kaderOverlay}
         dangerouslySetInnerHTML={{ __html: svgHtml }}
       />
+      {label && <p className={styles.kaderLabel}>{label}</p>}
     </>
   );
 
   if (link) {
+    if (/^https?:\/\//.test(link)) {
+      return (
+        <a
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.kaderTile}
+        >
+          {content}
+        </a>
+      );
+    }
+
     return (
       <Link to={link} className={styles.kaderTile}>
         {content}
@@ -216,8 +224,6 @@ export default function TekeningCollage({
       ...kader,
     }));
 
-    // Vaste volgorde: links (tekst) altijd op dezelfde plek,
-    // kaders er tussendoor op vaste posities.
     const items: (typeof tekeningen[number] | typeof kaders[number])[] = [
       tekeningen[0],
       tekeningen[1],
@@ -227,6 +233,7 @@ export default function TekeningCollage({
       kaders[1],
       tekeningen[4],
       tekeningen[5],
+      tekeningen[6],
     ];
 
     return intro
@@ -269,6 +276,7 @@ export default function TekeningCollage({
                 bucket={item.bucket}
                 color={color}
                 link={item.link}
+                label={item.labelKey ? t(item.labelKey) : undefined}
                 t={t}
               />
             </div>

@@ -9,6 +9,7 @@ const navItems = [
   { key: "nav.home", to: "/home" },
   { key: "nav.about", to: "/about" },
   { key: "nav.news", to: "/news" },
+  { key: "nav.keuken", to: "/keuken" },
   { key: "nav.calendar", to: "/calendar" },
   { key: "nav.contact", to: "/werking" },
   { key: "nav.volunteers", to: "/volunteers" },
