@@ -7,6 +7,10 @@
   position: relative;
 }
 
+svg {
+  size: smaller;
+}
+
 .crossLinks {
   display: flex;
   flex-wrap: wrap;

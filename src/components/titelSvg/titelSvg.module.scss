@@ -1,0 +1,11 @@
+.titleSvg {
+  display: inline-block;
+  width: 100%;
+  color: var(--text-color);
+
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}

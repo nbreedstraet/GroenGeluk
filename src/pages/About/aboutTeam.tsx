@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./about.module.scss";
+import TitleSvg from "../../components/titelSvg/titelSvg";
 
 interface Member {
   id: number;
@@ -50,7 +51,9 @@ export default function AboutTeam() {
 
   return (
     <div className={styles.teamContent}>
-      <h3>{t("about.tabTeam")}</h3>
+      <h3>
+        <TitleSvg name="team" label={t("gift.rekening")} width="6vw" />
+      </h3>
       <div className={styles.memberList}>
         {members.map((member, index) => (
           <div

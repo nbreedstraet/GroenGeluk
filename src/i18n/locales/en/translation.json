@@ -242,6 +242,9 @@
     "rekening": "BE 1035.253.581",
     "copyright": "© 2026 Groen Geluk vzw — Alle rechten voorbehouden."
   },
+  "gift": {
+    "rekening": "Bankaccount"
+  },
   "language": {
     "nl": "Nederlands",
     "en": "English",

@@ -4,6 +4,7 @@ import styles from "./volunteers.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-57.svg?raw";
 import svg2 from "../../assets/tekeningen/tekening-63.svg?raw";
+import TitleSvg from "../../components/titelSvg/titelSvg";
 
 export default function Volunteer() {
   const { t } = useTranslation();
@@ -12,7 +13,9 @@ export default function Volunteer() {
     <div className={styles.alles}>
       <PageBackground svgRaws={[svg1, svg2]} />
       <div className={styles.tekst}>
-        <h3>{t("volunteers.title")}</h3>
+        <h3>
+          <TitleSvg name="help" label={t("gift.rekening")} width="25vw" />
+        </h3>
         <div className={styles.broodtekst}>
           <div className={styles.left}>{t("volunteers.left")}</div>
           <div className={styles.right}>

@@ -4,6 +4,7 @@ import styles from "./werking.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-21.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-53.svg?raw";
+import TitleSvg from "../../components/titelSvg/titelSvg";
 
 export default function Contact() {
   const { t } = useTranslation();
@@ -13,7 +14,9 @@ export default function Contact() {
       <PageBackground svgRaws={[svg1, svg2]} />
       <div className={styles.tekst}>
         <p>{t("werking.intro")}</p>
-        <strong>{t("werking.tafelTitle")}</strong>
+        <TitleSvg name="longtable" label={t("gift.rekening")} width="25vw" />
+
+        {/* <strong>{t("werking.tafelTitle")}</strong> */}
         <p>
           {t("werking.tafelText1")}
           <br />
@@ -32,7 +35,9 @@ export default function Contact() {
         </p>
         <br />
         <br />
-        <strong>{t("werking.dinerTitle")}</strong>
+        <strong>
+          <TitleSvg name="dining" label={t("gift.rekening")} width="20vw" />
+        </strong>
         <p>
           {t("werking.dinerText1")}
           <br /> <br />{" "}
@@ -46,7 +51,9 @@ export default function Contact() {
         </p>
         <br />
         <br />
-        <strong>{t("werking.workshopsTitle")}</strong>
+        <strong>
+          <TitleSvg name="workshops" label={t("gift.rekening")} width="25vw" />
+        </strong>
         <p>
           {t("werking.workshopsText1")}
           <br />

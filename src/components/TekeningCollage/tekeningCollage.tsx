@@ -22,7 +22,6 @@ const KADERS = [
     svgRaw: kader09Raw,
     bucket: "GroenGelukImages",
     link: "https://myalbum.com/album/4AZv7iXYHRFyda/?invite=b0ddf165-a833-45c1-b446-50af44b9ad27",
-    labelKey: "tekeningCollage.behindTheScenes",
   },
   { svgRaw: kader10Raw, bucket: "GroenGelukGoedeDoelen", link: "/cause" },
 ];
@@ -224,7 +223,7 @@ export default function TekeningCollage({
       ...kader,
     }));
 
-    const items: (typeof tekeningen[number] | typeof kaders[number])[] = [
+    const items: ((typeof tekeningen)[number] | (typeof kaders)[number])[] = [
       tekeningen[0],
       tekeningen[1],
       kaders[0],
@@ -237,10 +236,7 @@ export default function TekeningCollage({
     ];
 
     return intro
-      ? [
-          { type: "intro" as const, id: "intro", content: intro },
-          ...items,
-        ]
+      ? [{ type: "intro" as const, id: "intro", content: intro }, ...items]
       : items;
   }, [color, shuffled, intro]);
 
@@ -276,7 +272,6 @@ export default function TekeningCollage({
                 bucket={item.bucket}
                 color={color}
                 link={item.link}
-                label={item.labelKey ? t(item.labelKey) : undefined}
                 t={t}
               />
             </div>
