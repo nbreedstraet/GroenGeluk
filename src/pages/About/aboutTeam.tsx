@@ -52,7 +52,11 @@ export default function AboutTeam() {
   return (
     <div className={styles.teamContent}>
       <h3>
-        <TitleSvg name="team" label={t("gift.rekening")} width="6vw" />
+        <TitleSvg
+          name="team"
+          label={t("gift.rekening")}
+          width="clamp(100px, 5vw, 200px)"
+        />
       </h3>
       <div className={styles.memberList}>
         {members.map((member, index) => (

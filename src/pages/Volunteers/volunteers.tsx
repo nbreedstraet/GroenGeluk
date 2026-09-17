@@ -15,7 +15,11 @@ export default function Volunteer() {
       {/* <PageBackground kader={"kader2"} /> */}
       <div className={styles.tekst}>
         <h3>
-          <TitleSvg name="help" label={t("gift.rekening")} width="25vw" />
+          <TitleSvg
+            name="help"
+            label={t("gift.rekening")}
+            width="clamp(310px, 30vw, 400px)"
+          />
         </h3>
         <div className={styles.broodtekst}>
           <div className={styles.left}>{t("volunteers.left")}</div>

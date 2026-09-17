@@ -40,7 +40,11 @@ export default function Contact() {
           onMouseEnter={() => handleEnter("blue")}
           onMouseLeave={handleLeave}
         >
-          <TitleSvg name="longtable" label={t("gift.rekening")} width="25vw" />
+          <TitleSvg
+            name="longtable"
+            label={t("gift.rekening")}
+            width="clamp(250px, 20vw, 400px)"
+          />
           <p>
             {t("werking.tafelText1")}
             <br />

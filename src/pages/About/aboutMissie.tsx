@@ -9,7 +9,11 @@ export default function AboutMissie() {
     <>
       <h3>
         {" "}
-        <TitleSvg name="missie" label={t("gift.rekening")} width="20vw" />
+        <TitleSvg
+          name="missie"
+          label={t("gift.rekening")}
+          width="clamp(250px, 20vw, 400px)"
+        />
       </h3>
       <div className={styles.broodtekst}>
         <div className={styles.left}>{t("about.missieLeft")}</div>

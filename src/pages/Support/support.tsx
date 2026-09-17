@@ -15,17 +15,29 @@ export default function Support() {
       <PageBackground svgRaws={[svg1, svg2]} />
       <div className={styles.tekst}>
         <h3>
-          <TitleSvg name="steun" label={t("gift.rekening")} width="25vw" />
+          <TitleSvg
+            name="steun"
+            label={t("gift.rekening")}
+            width="clamp(350px, 20vw, 400px)"
+          />
         </h3>
         <div className={styles.broodtekst}>
           <div className={styles.left}>{t("support.left")}</div>
           <div className={styles.right}>{t("support.right")}</div>
         </div>
         <div className={styles.extraInfo}>
-          <TitleSvg name="rekening" label={t("gift.rekening")} width="15vw" />
+          <TitleSvg
+            name="rekening"
+            label={t("gift.rekening")}
+            width="clamp(230px, 15vw, 400px)"
+          />
           {t("support.iban")} <br />
           <br />
-          <TitleSvg name="mededeling" label={t("gift.rekening")} width="10vw" />
+          <TitleSvg
+            name="mededeling"
+            label={t("gift.rekening")}
+            width="clamp(180px, 12vw, 400px)"
+          />
           {t("support.giftMessage")}
         </div>
 
