@@ -3,6 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./event-detail.module.scss";
+import PageBackground from "../../components/PageBackground/pageBackground";
+import svg1 from "../../assets/tekeningen/Tekening-15.svg?raw";
+import svg2 from "../../assets/tekeningen/Tekening-16.svg?raw";
 
 interface Event {
   id: number;
@@ -94,6 +97,8 @@ export default function EventDetail() {
 
   return (
     <div className={styles.container}>
+      <PageBackground svgRaws={[svg1, svg2]} />
+      {/* <PageBackground kader={"kader1"} /> */}
       <button
         className={styles.backButton}
         onClick={() => navigate("/calendar")}

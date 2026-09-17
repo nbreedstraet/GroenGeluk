@@ -3,6 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./news-detail.module.scss";
+import PageBackground from "../../components/PageBackground/pageBackground";
+import svg1 from "../../assets/tekeningen/Tekening-17.svg?raw";
+import svg2 from "../../assets/tekeningen/Tekening-18.svg?raw";
 
 type NewsItem = {
   id: number;
@@ -57,6 +60,8 @@ export default function NewsDetail() {
 
   return (
     <div className={styles.container}>
+      <PageBackground svgRaws={[svg1, svg2]} />
+      {/* <PageBackground kader={"kader2"} /> */}
       <div className={styles.containerButtons}>
         <button className={styles.backButton} onClick={() => navigate("/news")}>
           {t("news.backToOverview")}
@@ -65,9 +70,7 @@ export default function NewsDetail() {
       </div>
       <h1 className={styles.title}>{item.title}</h1>
 
-      <p className={styles.author}>
-        {t("news.by", { name: item.schrijver })}
-      </p>
+      <p className={styles.author}>{t("news.by", { name: item.schrijver })}</p>
 
       <div
         className={styles.content}

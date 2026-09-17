@@ -12,6 +12,7 @@ const svgModules = import.meta.glob("../../assets/tekeningen/*.svg", {
   import: "default",
   eager: true,
 });
+
 const allSvgContents = Object.values(svgModules) as string[];
 
 import kader09Raw from "../../assets/kaders/Kaders-09.svg?raw";
@@ -21,7 +22,7 @@ const KADERS = [
   {
     svgRaw: kader09Raw,
     bucket: "GroenGelukImages",
-    link: "https://myalbum.com/album/4AZv7iXYHRFyda/?invite=b0ddf165-a833-45c1-b446-50af44b9ad27",
+    link: "https://myalbum.com/folder/MwQdRdrNYuih/?invite=557f5e88-0a09-42d2-b917-32d75ee4bb3e",
   },
   { svgRaw: kader10Raw, bucket: "GroenGelukGoedeDoelen", link: "/cause" },
 ];
@@ -31,9 +32,9 @@ const links = [
   { key: "nav.news", link: "/news" },
   { key: "nav.keuken", link: "/keuken" },
   { key: "nav.calendar", link: "/calendar" },
-  { key: "nav.contact", link: "/werking" },
   { key: "nav.support", link: "/support" },
   { key: "nav.volunteers", link: "/volunteers" },
+  { key: "nav.contact", link: "/werking" },
 ];
 
 function shuffle<T>(arr: T[]): T[] {
@@ -149,7 +150,7 @@ function KaderTile({
         onClick={prev}
         aria-label={t("tekeningCollage.prevPhoto")}
       >
-        ‹
+        ←
       </button>
       {photos.length > 0 && (
         <img
@@ -164,7 +165,7 @@ function KaderTile({
         onClick={next}
         aria-label={t("tekeningCollage.nextPhoto")}
       >
-        ›
+        →
       </button>
       <div
         className={styles.kaderOverlay}

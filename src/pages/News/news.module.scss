@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  isolation: isolate;
 }
 
 .crossLinks {
@@ -58,7 +59,9 @@
     color 0.15s;
 
   &:hover {
-    background: #e0e0e0;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: var(--text-color);
   }
 }
 

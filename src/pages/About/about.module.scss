@@ -5,6 +5,7 @@
   width: 100%;
   min-height: 100vh;
   position: relative;
+  isolation: isolate;
 }
 
 .crossLinks {
@@ -52,10 +53,20 @@ h3 {
   text-align: center;
 }
 
+// .tekst {
+//   display: flex;
+//   flex-direction: column;
+//   position: relative;
+//   padding: 15%;
+//   width: 100%;
+//   box-sizing: border-box;
+// }
+
 .tekst {
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 1;
   padding: 15%;
   width: 100%;
   box-sizing: border-box;

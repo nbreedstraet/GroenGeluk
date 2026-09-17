@@ -18,6 +18,7 @@ export default function About() {
   return (
     <div className={styles.alles}>
       <PageBackground svgRaws={[svg1, svg2]} />
+      {/* <PageBackground kader={"kader2"} height="950px" marginTop="0rem" /> */}
       <div className={styles.tekst}>
         <div className={styles.tabs}>
           <button

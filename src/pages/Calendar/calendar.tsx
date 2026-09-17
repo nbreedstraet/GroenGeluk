@@ -114,15 +114,14 @@ export default function Calendar() {
   return (
     <div className={styles.alles}>
       <PageBackground svgRaws={[svg1, svg2]} />
+      {/* <PageBackground kader={"kader3"} height="150vh" marginTop="5rem" /> */}
       <div className={styles.intro}>
         <p>{t("calendar.intro1")}</p>
         <p>
-          {t("calendar.intro2")}{" "}
-          <strong>{t("calendar.intro2Strong")}</strong>
+          {t("calendar.intro2")} <strong>{t("calendar.intro2Strong")}</strong>
         </p>
         <p>
-          <strong>{t("calendar.intro3Strong")}</strong>
-          {t("calendar.intro3")}
+          <strong>{t("calendar.intro3Strong")}</strong> {t("calendar.intro3")}
         </p>
       </div>
       <div className={styles.filters}>

@@ -68,6 +68,7 @@ export default function News() {
     <>
       <div className={styles.marges}>
         <PageBackground svgRaws={[svg1, svg2]} />
+        {/* <PageBackground kader={"kader1"} /> */}
         <div className={styles.intro}>{t("news.intro")}</div>
         <div className={styles.filterBar}>
           {categories.map((cat) => (

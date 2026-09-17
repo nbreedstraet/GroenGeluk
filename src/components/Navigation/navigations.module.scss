@@ -76,9 +76,9 @@ a {
   color: var(--text-color);
   background-color: transparent;
 
-  &:hover {
-    opacity: 0.7;
-  }
+  // &:hover {
+  //   opacity: 0.7;
+  // }
 }
 
 .head {
@@ -135,10 +135,11 @@ a {
 .languageButtons {
   display: flex;
   gap: 5px;
+  background: var(--bg-color);
 }
 
 .langBtn {
-  background: transparent;
+  background: var(--bg-color);
   border: 2px solid grey;
   color: grey;
   padding: 2px 6px;

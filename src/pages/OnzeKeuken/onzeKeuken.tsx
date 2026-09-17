@@ -57,6 +57,7 @@ export default function OnzeKeuken() {
     <>
       <div className={styles.marges}>
         <PageBackground svgRaws={[svg1, svg2]} />
+        {/* <PageBackground kader={"kader1"} height="100vh" /> */}
         <div className={styles.intro}>{t("keuken.intro")}</div>
 
         <div className={styles.alles}>

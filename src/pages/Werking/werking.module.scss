@@ -6,6 +6,7 @@
   min-height: 100vh;
   position: relative;
   border: none;
+  isolation: isolate;
 }
 
 iframe {

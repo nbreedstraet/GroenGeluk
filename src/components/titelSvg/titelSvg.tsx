@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useTheme, themes } from "../../context/ThemeContext";
 import styles from "./titelSvg.module.scss";
 
 const svgs = import.meta.glob("../../assets/titles/**/*.svg", {
@@ -7,14 +9,28 @@ const svgs = import.meta.glob("../../assets/titles/**/*.svg", {
   import: "default",
 }) as Record<string, string>;
 
-function sanitizeSvg(markup: string) {
-  return markup
-    .replace(
-      /<svg([^>]*)>/,
-      (_, attrs) =>
-        `<svg ${attrs.replace(/\s*(width|height)="[^"]*"/g, "").trim()} fill="currentColor">`,
-    )
-    .replace(/\sfill="(?!none)[^"]*"/g, "");
+function sanitizeSvg(svg: string, color: string): string {
+  let html = svg;
+
+  html = html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
+
+  html = html.replace(/style="([^"]*)"/gi, (_, styleContent) => {
+    const cleaned = styleContent.replace(/fill\s*:\s*[^;"]+;?/gi, "").trim();
+    return cleaned ? `style="${cleaned}"` : "";
+  });
+
+  html = html.replace(/\sfill="(?!none)[^"]*"/gi, "");
+
+  html = html.replace(/\s(width|height)="[^"]*"/g, "");
+  html = html.replace(/<svg\b/, '<svg width="100%" height="auto"');
+  html = html.replace(/<svg\b/, '<svg overflow="visible"');
+
+  html = html.replace(
+    "</svg>",
+    `<style>path, polygon, rect, circle, ellipse, line, polyline { fill: ${color}; stroke: none; }</style></svg>`,
+  );
+
+  return html;
 }
 
 function resolveSvg(name: string, lang: string, fallbackLang = "nl") {
@@ -23,8 +39,7 @@ function resolveSvg(name: string, lang: string, fallbackLang = "nl") {
       path.endsWith(`/titles/${l}/${name}.svg`),
     )?.[1];
 
-  const raw = tryLang(lang) ?? tryLang(fallbackLang);
-  return raw ? sanitizeSvg(raw) : undefined;
+  return tryLang(lang) ?? tryLang(fallbackLang);
 }
 
 type Props = {
@@ -36,7 +51,14 @@ type Props = {
 
 export default function TitleSvg({ name, label, className, width }: Props) {
   const { i18n } = useTranslation();
-  const markup = resolveSvg(name, i18n.language);
+  const { theme } = useTheme();
+  const color = themes[theme].text;
+
+  const raw = resolveSvg(name, i18n.language);
+  const markup = useMemo(
+    () => (raw ? sanitizeSvg(raw, color) : undefined),
+    [raw, color],
+  );
 
   if (!markup) return null;
 

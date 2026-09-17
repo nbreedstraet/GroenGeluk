@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "./volunteers.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
+import TitleSvg from "../../components/titelSvg/titelSvg";
 import svg1 from "../../assets/tekeningen/Tekening-57.svg?raw";
 import svg2 from "../../assets/tekeningen/tekening-63.svg?raw";
-import TitleSvg from "../../components/titelSvg/titelSvg";
 
 export default function Volunteer() {
   const { t } = useTranslation();
@@ -12,6 +12,7 @@ export default function Volunteer() {
   return (
     <div className={styles.alles}>
       <PageBackground svgRaws={[svg1, svg2]} />
+      {/* <PageBackground kader={"kader2"} /> */}
       <div className={styles.tekst}>
         <h3>
           <TitleSvg name="help" label={t("gift.rekening")} width="25vw" />
@@ -23,9 +24,13 @@ export default function Volunteer() {
             <br /> <br />
           </div>
         </div>
+        <br />
+        <br />
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdh1eRpncD8yXXUvSfvOJ-89plEeaa_XSNA2vjL1U2LA9rS2g/viewform">
           {t("volunteers.cta")}
         </a>
+        <br />
+        <br />
 
         <div className={styles.crossLinks}>
           <Link to="/about" className={styles.crossLink}>

@@ -11,6 +11,7 @@ export default function Cause() {
   return (
     <div className={styles.alles}>
       <PageBackground svgRaws={[svg1, svg2]} />
+      {/* <PageBackground kader={"kader1"} /> */}
       <div className={styles.tekst}>
         <h3>{t("cause.title")}</h3>
         <div className={styles.broodtekst}>
