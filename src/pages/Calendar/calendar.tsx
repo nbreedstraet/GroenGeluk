@@ -52,8 +52,8 @@ function formatDate(
   date: string,
   t: (key: string) => string,
 ): { dag: string; maand: string } {
-  const datePart = date.split(/[T ]/)[0];
-  const [, m, d] = datePart.split("-");
+  const iso = date?.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  const parsed = iso || !date ? null : new Date(date);
   const maanden = [
     t("calendar.months.jan"),
     t("calendar.months.feb"),
@@ -68,9 +68,21 @@ function formatDate(
     t("calendar.months.nov"),
     t("calendar.months.dec"),
   ];
+
+  let dag = "";
+  let maandIndex = NaN;
+
+  if (iso) {
+    maandIndex = parseInt(iso[2], 10);
+    dag = iso[3];
+  } else if (parsed && !Number.isNaN(parsed.getTime())) {
+    maandIndex = parsed.getUTCMonth() + 1;
+    dag = String(parsed.getUTCDate());
+  }
+
   return {
-    dag: d ?? date,
-    maand: maanden[parseInt(m) - 1] || "???",
+    dag: dag || date,
+    maand: maanden[maandIndex - 1] || "???",
   };
 }
 

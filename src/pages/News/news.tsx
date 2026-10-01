@@ -36,7 +36,6 @@ export default function News() {
   const [filter, setFilter] = useState<string | null>(null);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const allCategories = t("news.allCategories");
 
   useEffect(() => {
     async function loadNews() {
