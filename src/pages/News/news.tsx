@@ -6,13 +6,17 @@ import styles from "./news.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-17.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-18.svg?raw";
+import { vertaalVeld } from "../../lib/vertaal";
 
 type NewsItem = {
   id: number;
   title: string;
+  title_i18n: Record<string, string> | null;
   schrijver: string;
   content: string;
+  content_i18n: Record<string, string> | null;
   category: string;
+  category_i18n: Record<string, string> | null;
   createdAt: string;
 };
 
@@ -29,9 +33,9 @@ function summarize(text: string, maxLen = 200): string {
 
 export default function News() {
   const [items, setItems] = useState<NewsItem[]>([]);
-  const [filter, setFilter] = useState("Alle");
+  const [filter, setFilter] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const allCategories = t("news.allCategories");
 
   useEffect(() => {
@@ -55,14 +59,18 @@ export default function News() {
   }, []);
 
   const categories = [
-    allCategories,
-    ...new Set(items.map((i) => i.category).filter(Boolean)),
+    ...new Map(
+      items
+        .filter((i) => i.category)
+        .map((i) => [
+          i.category,
+          vertaalVeld(i.category_i18n, i18n.language) || i.category,
+        ]),
+    ),
   ];
 
   const filtered =
-    filter === allCategories
-      ? items
-      : items.filter((i) => i.category === filter);
+    filter === null ? items : items.filter((i) => i.category === filter);
 
   return (
     <>
@@ -71,13 +79,20 @@ export default function News() {
         {/* <PageBackground kader={"kader1"} /> */}
         <div className={styles.intro}>{t("news.intro")}</div>
         <div className={styles.filterBar}>
-          {categories.map((cat) => (
+          <button
+            className={`${styles.filterBtn} ${filter === null ? styles.active : ""}`}
+            onClick={() => setFilter(null)}
+          >
+            {t("news.allCategories")}
+          </button>
+
+          {categories.map(([value, label]) => (
             <button
-              key={cat}
-              className={`${styles.filterBtn} ${filter === cat ? styles.active : ""}`}
-              onClick={() => setFilter(cat)}
+              key={value}
+              className={`${styles.filterBtn} ${filter === value ? styles.active : ""}`}
+              onClick={() => setFilter(value)}
             >
-              {cat}
+              {label}
             </button>
           ))}
         </div>
@@ -89,15 +104,23 @@ export default function News() {
               className={styles.card}
               onClick={() => navigate(`/news/${item.id}`)}
             >
-              <span className={styles.category}>{item.category}</span>
-
-              <h2>{item.title}</h2>
+              <span className={styles.category}>
+                {vertaalVeld(item.category_i18n, i18n.language) ||
+                  item.category}
+              </span>
+              <h2>
+                {vertaalVeld(item.title_i18n, i18n.language) || item.title}
+              </h2>
 
               <p className={styles.author}>
                 {t("news.by", { name: item.schrijver })}
               </p>
 
-              <p className={styles.summary}>{summarize(item.content)}</p>
+              <p className={styles.summary}>
+                {summarize(
+                  vertaalVeld(item.content_i18n, i18n.language) || item.content,
+                )}
+              </p>
 
               <span className={styles.readMore}>{t("news.readMore")}</span>
             </article>

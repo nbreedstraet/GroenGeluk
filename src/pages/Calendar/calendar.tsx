@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
@@ -6,24 +6,54 @@ import styles from "./calendar.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-19.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-20.svg?raw";
+import { vertaalVeld } from "../../lib/vertaal";
+
+type I18n = Record<string, string> | null;
+
+const ARROW_WIDTH = 20;
+
+function fitSelectToText(select: HTMLSelectElement | null) {
+  if (!select) return;
+  const option = select.options[select.selectedIndex];
+  if (!option?.textContent) return;
+
+  const style = window.getComputedStyle(select);
+  const ctx = document.createElement("canvas").getContext("2d");
+  if (!ctx) return;
+  ctx.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+
+  const width =
+    ctx.measureText(option.textContent).width +
+    parseFloat(style.paddingLeft) +
+    parseFloat(style.paddingRight) +
+    parseFloat(style.borderLeftWidth) +
+    parseFloat(style.borderRightWidth) +
+    ARROW_WIDTH;
+
+  select.style.width = `${Math.ceil(width)}px`;
+}
 
 interface Event {
   id: number;
   title: string;
+  title_i18n: I18n;
   type: string;
+  type_i18n: I18n;
   date: string;
   time: string;
   location: string;
+  location_i18n: I18n;
   ticket_url?: string;
   description: string;
+  description_i18n: I18n;
 }
 
 function formatDate(
   date: string,
   t: (key: string) => string,
 ): { dag: string; maand: string } {
-  const datePart = date.split("T")[0];
-  const [m, d] = datePart.split("-");
+  const datePart = date.split(/[T ]/)[0];
+  const [, m, d] = datePart.split("-");
   const maanden = [
     t("calendar.months.jan"),
     t("calendar.months.feb"),
@@ -46,12 +76,19 @@ function formatDate(
 
 export default function Calendar() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [filterType, setFilterType] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
+  const typeSelectRef = useRef<HTMLSelectElement>(null);
+  const locationSelectRef = useRef<HTMLSelectElement>(null);
+
+  useLayoutEffect(() => {
+    fitSelectToText(typeSelectRef.current);
+    fitSelectToText(locationSelectRef.current);
+  });
 
   useEffect(() => {
     async function fetchEvents() {
@@ -76,8 +113,27 @@ export default function Calendar() {
     fetchEvents();
   }, []);
 
-  const types = [...new Set(events.map((e) => e.type))];
-  const locations = [...new Set(events.map((e) => e.location))];
+  const tr = (i18nVeld: I18n, origineel: string) =>
+    vertaalVeld(i18nVeld, i18n.language) || origineel;
+
+  // [origineel, vertaald label]
+  const types = [
+    ...new Map(
+      events
+        .filter((e) => e.type)
+        .map((e) => [e.type, tr(e.type_i18n, e.type)] as [string, string]),
+    ),
+  ];
+  const locations = [
+    ...new Map(
+      events
+        .filter((e) => e.location)
+        .map(
+          (e) =>
+            [e.location, tr(e.location_i18n, e.location)] as [string, string],
+        ),
+    ),
+  ];
 
   const filteredEvents = events.filter((event) => {
     const typeMatch = !filterType || event.type === filterType;
@@ -126,27 +182,29 @@ export default function Calendar() {
       </div>
       <div className={styles.filters}>
         <select
+          ref={typeSelectRef}
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
           className={styles.filterSelect}
         >
           <option value="">{t("calendar.allTypes")}</option>
-          {types.map((type) => (
-            <option key={type} value={type}>
-              {type}
+          {types.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
             </option>
           ))}
         </select>
 
         <select
+          ref={locationSelectRef}
           value={filterLocation}
           onChange={(e) => setFilterLocation(e.target.value)}
           className={styles.filterSelect}
         >
           <option value="">{t("calendar.allLocations")}</option>
-          {locations.map((location) => (
-            <option key={location} value={location}>
-              {location}
+          {locations.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
             </option>
           ))}
         </select>
@@ -168,10 +226,12 @@ export default function Calendar() {
               </div>
 
               <div className={styles.eventInfo}>
-                <span className={styles.type}>{event.type}</span>
-                <h3>{event.title}</h3>
+                <span className={styles.type}>
+                  {tr(event.type_i18n, event.type)}
+                </span>
+                <h3>{tr(event.title_i18n, event.title)}</h3>
                 <p className={styles.location}>
-                  📍 {event.location}
+                  📍 {tr(event.location_i18n, event.location)}
                   {event.time && (
                     <span className={styles.time}> • {event.time}</span>
                   )}
@@ -181,7 +241,8 @@ export default function Calendar() {
               <button
                 type="button"
                 className={styles.ticketButton}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   if (event.ticket_url) {
                     window.open(
                       event.ticket_url,

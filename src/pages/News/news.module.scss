@@ -39,36 +39,39 @@
 
 .filterBar {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 2rem;
   padding-bottom: 0;
+  width: 90%;
 }
 
 .filterBtn {
   display: inline-block;
-  font-size: 0.8rem;
-  border: solid 2px;
-  padding: 0.3rem 0.9rem;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  border: solid 2px var(--text-color);
   border-radius: 20px;
-  cursor: pointer;
-  background: none;
-  font: inherit;
-  transition:
-    background 0.15s,
-    color 0.15s;
+  margin: 1%;
 
   &:hover {
     background: var(--text-color);
     color: var(--bg-color);
-    border: var(--text-color);
+    border: solid 2px var(--text-color);
   }
 }
 
 .active {
   background: var(--text-color);
   color: var(--bg-color);
-  border-color: solid 2px var(--text-color);
+  border: solid 2px var(--text-color);
 
   &:hover {
     background: var(--text-color);

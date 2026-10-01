@@ -6,20 +6,24 @@ import styles from "./news-detail.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-17.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-18.svg?raw";
+import { vertaalVeld } from "../../lib/vertaal";
 
 type NewsItem = {
   id: number;
   title: string;
+  title_i18n: Record<string, string> | null;
   schrijver: string;
   content: string;
+  content_i18n: Record<string, string> | null;
   category: string;
+  category_i18n: Record<string, string> | null;
   createdAt: string;
 };
 
 export default function NewsDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [item, setItem] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -58,6 +62,11 @@ export default function NewsDetail() {
     );
   }
 
+  const title = vertaalVeld(item.title_i18n, i18n.language) || item.title;
+  const content = vertaalVeld(item.content_i18n, i18n.language) || item.content;
+  const category =
+    vertaalVeld(item.category_i18n, i18n.language) || item.category;
+
   return (
     <div className={styles.container}>
       <PageBackground svgRaws={[svg1, svg2]} />
@@ -66,15 +75,15 @@ export default function NewsDetail() {
         <button className={styles.backButton} onClick={() => navigate("/news")}>
           {t("news.backToOverview")}
         </button>
-        <span className={styles.category}>{item.category}</span>
+        <span className={styles.category}>{category}</span>
       </div>
-      <h1 className={styles.title}>{item.title}</h1>
+      <h1 className={styles.title}>{title}</h1>
 
       <p className={styles.author}>{t("news.by", { name: item.schrijver })}</p>
 
       <div
         className={styles.content}
-        dangerouslySetInnerHTML={{ __html: item.content }}
+        dangerouslySetInnerHTML={{ __html: content }}
       />
     </div>
   );

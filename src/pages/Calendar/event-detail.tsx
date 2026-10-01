@@ -6,16 +6,23 @@ import styles from "./event-detail.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-15.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-16.svg?raw";
+import { vertaalVeld } from "../../lib/vertaal";
+
+type I18n = Record<string, string> | null;
 
 interface Event {
   id: number;
   title: string;
+  title_i18n: I18n;
   type: string;
+  type_i18n: I18n;
   date: string;
   time: string;
   location: string;
+  location_i18n: I18n;
   ticket_url?: string;
   description: string;
+  description_i18n: I18n;
 }
 
 function formatFullDate(
@@ -23,7 +30,7 @@ function formatFullDate(
   time: string,
   t: (key: string) => string,
 ): string {
-  const [y, m, d] = date.split("-");
+  const [y, m, d] = date.split("T")[0].split("-");
   if (!y || !m || !d) return date;
   const months = [
     t("event.months.january"),
@@ -41,13 +48,15 @@ function formatFullDate(
   ];
   const dag = parseInt(d, 10);
   const maand = months[parseInt(m, 10) - 1] ?? "???";
-  return `${dag} ${maand} ${y} om ${time}`;
+  return time
+    ? `${dag} ${maand} ${y} ${t("event.at")} ${time}`
+    : `${dag} ${maand} ${y}`;
 }
 
 export default function EventDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -95,6 +104,14 @@ export default function EventDetail() {
     );
   }
 
+  const tr = (i18nVeld: I18n, origineel: string) =>
+    vertaalVeld(i18nVeld, i18n.language) || origineel;
+
+  const title = tr(event.title_i18n, event.title);
+  const type = tr(event.type_i18n, event.type);
+  const location = tr(event.location_i18n, event.location);
+  const description = tr(event.description_i18n, event.description);
+
   return (
     <div className={styles.container}>
       <PageBackground svgRaws={[svg1, svg2]} />
@@ -106,8 +123,8 @@ export default function EventDetail() {
         {t("event.back")}
       </button>
 
-      <span className={styles.type}>{event.type}</span>
-      <h1 className={styles.title}>{event.title}</h1>
+      <span className={styles.type}>{type}</span>
+      <h1 className={styles.title}>{title}</h1>
 
       <div className={styles.info}>
         <p>
@@ -115,7 +132,7 @@ export default function EventDetail() {
           {formatFullDate(event.date, event.time, t)}
         </p>
         <p>
-          <strong>{t("event.location")}:</strong> {event.location}
+          <strong>{t("event.location")}:</strong> {location}
         </p>
         {event.ticket_url && (
           <a
@@ -131,7 +148,7 @@ export default function EventDetail() {
 
       <div
         className={styles.description}
-        dangerouslySetInnerHTML={{ __html: event.description }}
+        dangerouslySetInnerHTML={{ __html: description }}
       />
 
       {event.ticket_url && (
