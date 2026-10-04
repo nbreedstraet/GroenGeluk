@@ -4,6 +4,7 @@ import styles from "./cause.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/tekening-64.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening.svg?raw";
+import TitleSvg from "../../components/titelSvg/titelSvg";
 
 export default function Cause() {
   const { t } = useTranslation();
@@ -13,14 +14,25 @@ export default function Cause() {
       <PageBackground svgRaws={[svg1, svg2]} />
       {/* <PageBackground kader={"kader1"} /> */}
       <div className={styles.tekst}>
-        <h3>{t("cause.title")}</h3>
+        <TitleSvg
+          name="doel"
+          label={t("cause.title")}
+          width="clamp(350px, 5vw, 200px)"
+        />
         <div className={styles.broodtekst}>
           <div className={styles.left}>{t("cause.left")}</div>
           <div className={styles.right}>{t("cause.right")}</div>
         </div>
       </div>
       <div className={styles.tekst2}>
-        <h3>{t("cause.featuredTitle")}</h3>
+        <div className={styles.titleTekst2}>
+          <TitleSvg
+            name="kijker"
+            label={t("cause.featuredTitle")}
+            width="clamp(200px, 10vw, 200px)"
+          />
+          <h3>{t("cause.featuredTitle")}</h3>
+        </div>
         <img src="/Images/FotoCC.webp" alt="" className={styles.img3} />
         <div className={styles.broodtekst}>
           <div className={styles.left}>{t("cause.featuredLeft")}</div>
