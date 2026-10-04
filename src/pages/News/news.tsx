@@ -51,7 +51,13 @@ export default function News() {
         return;
       }
 
-      setItems((data ?? []).filter((i) => i.category !== "Recepten"));
+      setItems(
+        (data ?? []).filter(
+          (i) =>
+            i.category !== "Recepten" &&
+            !String(i.category).toLowerCase().startsWith("recepten"),
+        ),
+      );
     }
 
     loadNews();

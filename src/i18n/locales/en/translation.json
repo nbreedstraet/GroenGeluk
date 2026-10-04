@@ -95,6 +95,8 @@
     "loadError": "Error while loading:",
     "allTypes": "All types",
     "allLocations": "All locations",
+    "fromDate": "From",
+    "untilDate": "Until",
     "tickets": "View event",
     "intro1": "Every month we alternately organise a buffet at the Stelplaats or a cozy dinner at the Maakleerplek, as well as a cooking workshop. Occasionally we go on location with Groen Geluk and cook by invitation and in collaboration.",
     "intro2": "In this overview you will discover where and when you can take a seat in the coming period for a clean plate of Groen Geluk. Click through to an event for all practical information. You will find the registration link both on the event page itself and in the bio on our Instagram.",
@@ -162,6 +164,7 @@
     "backToCalendar": "Back to calendar",
     "back": "← Back",
     "date": "Date",
+    "time": "Time",
     "location": "Location",
     "buyTickets": "Reserve your ticket",
     "months": {

@@ -43,7 +43,7 @@ export default function Contact() {
           <TitleSvg
             name="longtable"
             label={t("gift.rekening")}
-            width="clamp(250px, 20vw, 400px)"
+            width="clamp(400px, 5vw, 100px)"
           />
           <p>
             {t("werking.tafelText1")}
@@ -69,7 +69,11 @@ export default function Contact() {
           onMouseLeave={handleLeave}
         >
           <strong>
-            <TitleSvg name="dining" label={t("gift.rekening")} width="25vw" />
+            <TitleSvg
+              name="dining"
+              label={t("gift.rekening")}
+              width="clamp(400px, 5vw, 100px)"
+            />
           </strong>
           <p>
             {t("werking.dinerText1")}
@@ -94,7 +98,7 @@ export default function Contact() {
             <TitleSvg
               name="workshops"
               label={t("gift.rekening")}
-              width="28vw"
+              width="clamp(400px, 5vw, 100px)"
             />
           </strong>
           <p>

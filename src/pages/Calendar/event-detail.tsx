@@ -7,6 +7,7 @@ import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-15.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-16.svg?raw";
 import { vertaalVeld } from "../../lib/vertaal";
+import { formatTijd } from "../../lib/tijd";
 
 type I18n = Record<string, string> | null;
 
@@ -25,11 +26,7 @@ interface Event {
   description_i18n: I18n;
 }
 
-function formatFullDate(
-  date: string,
-  time: string,
-  t: (key: string) => string,
-): string {
+function formatFullDate(date: string, t: (key: string) => string): string {
   const [y, m, d] = date.split("T")[0].split("-");
   if (!y || !m || !d) return date;
   const months = [
@@ -48,9 +45,7 @@ function formatFullDate(
   ];
   const dag = parseInt(d, 10);
   const maand = months[parseInt(m, 10) - 1] ?? "???";
-  return time
-    ? `${dag} ${maand} ${y} ${t("event.at")} ${time}`
-    : `${dag} ${maand} ${y}`;
+  return `${dag} ${maand} ${y}`;
 }
 
 export default function EventDetail() {
@@ -129,8 +124,13 @@ export default function EventDetail() {
       <div className={styles.info}>
         <p>
           <strong>{t("event.date")}:</strong>{" "}
-          {formatFullDate(event.date, event.time, t)}
+          {formatFullDate(event.date, t)}
         </p>
+        {formatTijd(event.time) && (
+          <p>
+            <strong>{t("event.time")}:</strong> {formatTijd(event.time)}
+          </p>
+        )}
         <p>
           <strong>{t("event.location")}:</strong> {location}
         </p>

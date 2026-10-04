@@ -7,6 +7,7 @@ import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-19.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-20.svg?raw";
 import { vertaalVeld } from "../../lib/vertaal";
+import { formatTijd } from "../../lib/tijd";
 
 type I18n = Record<string, string> | null;
 
@@ -86,6 +87,12 @@ function formatDate(
   };
 }
 
+function toDateKey(date?: string | null): string {
+  const match = String(date ?? "").match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (!match) return "";
+  return `${match[1]}-${match[2].padStart(2, "0")}-${match[3].padStart(2, "0")}`;
+}
+
 export default function Calendar() {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -94,6 +101,8 @@ export default function Calendar() {
   const [error, setError] = useState("");
   const [filterType, setFilterType] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
+  const [filterFrom, setFilterFrom] = useState("");
+  const [filterTo, setFilterTo] = useState("");
   const typeSelectRef = useRef<HTMLSelectElement>(null);
   const locationSelectRef = useRef<HTMLSelectElement>(null);
 
@@ -146,11 +155,16 @@ export default function Calendar() {
         ),
     ),
   ];
+  const van = toDateKey(filterFrom);
+  const tot = toDateKey(filterTo);
 
   const filteredEvents = events.filter((event) => {
     const typeMatch = !filterType || event.type === filterType;
     const locationMatch = !filterLocation || event.location === filterLocation;
-    return typeMatch && locationMatch;
+    const key = toDateKey(event.date);
+    const dateMatch =
+      (!van || (!!key && key >= van)) && (!tot || (!!key && key <= tot));
+    return typeMatch && locationMatch && dateMatch;
   });
 
   if (loading) {
@@ -220,6 +234,34 @@ export default function Calendar() {
             </option>
           ))}
         </select>
+
+        <div className={styles.filterRange}>
+          <span className={styles.filterRangeLabel}>
+            {t("calendar.fromDate")}:
+          </span>
+          <input
+            type="date"
+            value={filterFrom}
+            max={filterTo || undefined}
+            onChange={(e) => setFilterFrom(e.target.value)}
+            className={styles.filterDateInput}
+            aria-label={t("calendar.fromDate")}
+          />
+
+          <span className={styles.filterRangeDivider} />
+
+          <span className={styles.filterRangeLabel}>
+            {t("calendar.untilDate")}:
+          </span>
+          <input
+            type="date"
+            value={filterTo}
+            min={filterFrom || undefined}
+            onChange={(e) => setFilterTo(e.target.value)}
+            className={styles.filterDateInput}
+            aria-label={t("calendar.untilDate")}
+          />
+        </div>
       </div>
 
       <div className={styles.eventList}>
@@ -245,7 +287,10 @@ export default function Calendar() {
                 <p className={styles.location}>
                   📍 {tr(event.location_i18n, event.location)}
                   {event.time && (
-                    <span className={styles.time}> • {event.time}</span>
+                    <span className={styles.time}>
+                      {" "}
+                      • {formatTijd(event.time)}
+                    </span>
                   )}
                 </p>
               </div>

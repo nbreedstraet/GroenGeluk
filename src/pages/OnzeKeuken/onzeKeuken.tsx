@@ -7,7 +7,7 @@ import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-17.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-18.svg?raw";
 
-type NewsItem = {
+type onzeKeukenItem = {
   id: number;
   title: string;
   schrijver: string;
@@ -28,7 +28,7 @@ function summarize(text: string, maxLen = 200): string {
 }
 
 export default function OnzeKeuken() {
-  const [items, setItems] = useState<NewsItem[]>([]);
+  const [items, setItems] = useState<onzeKeukenItem[]>([]);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -37,7 +37,7 @@ export default function OnzeKeuken() {
       const { data, error } = await supabase
         .from("ImagesGoodCauses")
         .select("*")
-        .eq("category", "Recepten")
+        .ilike("category", "Recepten%")
         .order("createdAt", {
           ascending: false,
         });
@@ -65,7 +65,7 @@ export default function OnzeKeuken() {
             <article
               key={item.id}
               className={styles.card}
-              onClick={() => navigate(`/news/${item.id}`)}
+              onClick={() => navigate(`/keuken/${item.id}`)}
             >
               <span className={styles.category}>{item.category}</span>
 
@@ -83,8 +83,8 @@ export default function OnzeKeuken() {
         </div>
 
         <div className={styles.crossLinks}>
-          <Link to="/calendar" className={styles.crossLink}>
-            {t("news.crossCalendar")}
+          <Link to="/news" className={styles.crossLink}>
+            {t("calendar.crossNews")}
           </Link>
           <Link to="/about" className={styles.crossLink}>
             {t("news.crossAbout")}

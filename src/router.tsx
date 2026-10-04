@@ -6,6 +6,7 @@ import About from "./pages/About/about";
 import News from "./pages/News/news";
 import NewsDetail from "./pages/News/news-detail";
 import OnzeKeuken from "./pages/OnzeKeuken/onzeKeuken";
+import OnzeKeukenDetail from "./pages/OnzeKeuken/onzeKeuken-detail";
 import Calendar from "./pages/Calendar/calendar";
 import EventDetail from "./pages/Calendar/event-detail";
 import CalendarSubmit from "./pages/Calendar/submitPage";
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "news", element: <News /> },
       { path: "keuken", element: <OnzeKeuken /> },
+      { path: "keuken/:id", element: <OnzeKeukenDetail /> },
       { path: "news/:id", element: <NewsDetail /> },
       { path: "calendar", element: <Calendar /> },
       { path: "calendar/:id", element: <EventDetail /> },

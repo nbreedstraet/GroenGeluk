@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "../../pages/Calendar/calendar.module.scss";
+import { formatTijd } from "../../lib/tijd";
 
 interface Event {
   id: number;
@@ -109,7 +110,10 @@ export default function EventsList() {
               <p className={styles.location}>
                 {event.location}
                 {event.time && (
-                  <span className={styles.time}> · {event.time}</span>
+                  <span className={styles.time}>
+                    {" "}
+                    · {formatTijd(event.time)}
+                  </span>
                 )}
               </p>
             </div>

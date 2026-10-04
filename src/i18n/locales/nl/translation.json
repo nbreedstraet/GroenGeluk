@@ -95,6 +95,8 @@
     "loadError": "Fout bij laden:",
     "allTypes": "Alle types",
     "allLocations": "Alle locaties",
+    "fromDate": "Van",
+    "untilDate": "Tot",
     "tickets": "Evenement bekijken",
     "intro1": "Elke maand organiseren we afwisselend een buffet in de Stelplaats of een gezellig diner in de Maakleerplek, evenals een kookworkshop. Af en toe gaan we met Groen Geluk op verplaatsing en koken we op uitnodiging én in samenwerking met.",
     "intro2": "In dit overzicht ontdek je waar en wanneer je de komende tijd je voeten onder tafel kunt schuiven voor een schoon bordje Groen Geluk. Klik door op een evenement voor alle praktische info. De inschrijvingslink vind je zowel op de eventpagina zelf als in de bio op onze Instagram.",
@@ -162,6 +164,7 @@
     "backToCalendar": "Terug naar kalender",
     "back": "← Terug",
     "date": "Datum",
+    "time": "Uur",
     "location": "Locatie",
     "buyTickets": "Reserveer je ticket",
     "months": {

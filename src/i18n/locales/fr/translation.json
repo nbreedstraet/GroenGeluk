@@ -95,6 +95,8 @@
     "loadError": "Erreur lors du chargement :",
     "allTypes": "Tous les types",
     "allLocations": "Tous les lieux",
+    "fromDate": "Du",
+    "untilDate": "Jusqu'au",
     "tickets": "Voir l'événement",
     "intro1": "Chaque mois, nous organisons en alternance un buffet à la Stelplaats ou un dîner convivial à la Maakleerplek, ainsi qu'un atelier culinaire. De temps en temps, nous partons avec Groen Geluk en déplacement et cuisinons sur invitation et en collaboration.",
     "intro2": "Dans cet aperçu, vous découvrirez où et quand vous pourrez vous installer à table dans les prochaines semaines pour une assiette propre de Groen Geluk. Cliquez sur un événement pour toutes les informations pratiques. Vous trouverez le lien d'inscription aussi bien sur la page de l'événement que dans la bio de notre Instagram.",
@@ -162,6 +164,7 @@
     "backToCalendar": "Retour au calendrier",
     "back": "← Retour",
     "date": "Date",
+    "time": "Heure",
     "location": "Lieu",
     "buyTickets": "Réservez un ticket",
     "months": {
