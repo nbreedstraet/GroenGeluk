@@ -218,6 +218,17 @@ h3 {
 
   .tabs {
     flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tab {
+    margin-bottom: 0;
+  }
+
+  .tab,
+  .tab:hover,
+  .tabActive {
+    border-color: var(--text-color);
   }
 
   .memberCard {
@@ -234,7 +245,21 @@ h3 {
     text-align: center;
   }
 
+  .fotoFirst .memberInfo,
+  .fotoLast .memberInfo,
+  .memberInfo {
+    text-align: center;
+  }
+
   .fotoLast .memberTip {
     margin-left: 0;
+  }
+
+  .fotoFirst .memberTip,
+  .fotoLast .memberTip,
+  .memberTip {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 }
