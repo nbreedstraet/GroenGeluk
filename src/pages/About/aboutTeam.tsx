@@ -15,6 +15,7 @@ interface Member {
   role: string;
   role_i18n: I18n;
   contact: string;
+  image_path: string | null;
 }
 
 export default function AboutTeam() {
@@ -39,23 +40,11 @@ export default function AboutTeam() {
   const tr = (i18nVeld: I18n, origineel: string) =>
     vertaalVeld(i18nVeld, i18n.language) || origineel;
 
-  if (loading) {
-    return (
-      <div className={styles.teamContent}>
-        <h3>{t("about.tabTeam")}</h3>
-        <p className={styles.teamText}>{t("about.teamLoading")}</p>
-      </div>
-    );
-  }
+  const getImageUrl = (path: string | null) =>
+    path
+      ? supabase.storage.from("team-images").getPublicUrl(path).data.publicUrl
+      : null;
 
-  if (members.length === 0) {
-    return (
-      <div className={styles.teamContent}>
-        <h3>{t("about.tabTeam")}</h3>
-        <p className={styles.teamText}>{t("about.teamEmpty")}</p>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.teamContent}>
@@ -67,25 +56,31 @@ export default function AboutTeam() {
         />
       </h3>
       <div className={styles.memberList}>
-        {members.map((member, index) => (
-          <div
-            key={member.id}
-            className={`${styles.memberCard} ${index % 2 === 0 ? styles.fotoFirst : styles.fotoLast}`}
-          >
-            <div className={styles.memberFoto} />
-            <div className={styles.memberInfo}>
-              <h4 className={styles.memberName}>{member.fullName}</h4>
-              <p className={styles.memberRole}>
-                {tr(member.role_i18n, member.role)}
-              </p>
-              <p className={styles.memberTip}>
-                {t("about.teamTipLabel")} <br />
-                {tr(member.favoriteVeganTip_i18n, member.favoriteVeganTip)}
-              </p>
-              <p className={styles.memberContact}>{member.contact}</p>
+        {members.map((member, index) => {
+          const imageUrl = getImageUrl(member.image_path);
+
+          return (
+            <div
+              key={member.id}
+              className={`${styles.memberCard} ${index % 2 === 0 ? styles.fotoFirst : styles.fotoLast}`}
+            >
+              <div className={styles.memberFoto}>
+                {imageUrl && <img src={imageUrl} alt={member.fullName} />}
+              </div>
+              <div className={styles.memberInfo}>
+                <h4 className={styles.memberName}>{member.fullName}</h4>
+                <p className={styles.memberRole}>
+                  {tr(member.role_i18n, member.role)}
+                </p>
+                <p className={styles.memberTip}>
+                  {t("about.teamTipLabel")} <br />
+                  {tr(member.favoriteVeganTip_i18n, member.favoriteVeganTip)}
+                </p>
+                <p className={styles.memberContact}>{member.contact}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

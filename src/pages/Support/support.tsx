@@ -32,6 +32,8 @@ export default function Support() {
             width="clamp(230px, 15vw, 400px)"
           />
           {t("support.iban")} <br />
+          {t("support.name")}
+          <br />
           <br />
           <TitleSvg
             name="mededeling"
