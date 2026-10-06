@@ -51,6 +51,7 @@
     "backToNews": "Back to news",
     "backToOverview": "← Back to overview",
     "loading": "Loading article...",
+    "sources": "Sources",
     "form": {
       "requiredTitle": "Enter a title.",
       "requiredAuthor": "Enter the author's name.",

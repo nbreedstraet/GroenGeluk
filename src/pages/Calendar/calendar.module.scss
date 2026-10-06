@@ -68,14 +68,32 @@
   }
 }
 
+.selectWrap {
+  position: relative;
+  display: inline-flex;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 8px;
+    background-color: var(--text-color);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+      center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+      center / contain no-repeat;
+    pointer-events: none;
+  }
+}
+
 .filterSelect {
   @include filterControl;
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%232d5f3a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 10px 8px;
+  padding-right: 2.25rem;
 }
 
 .filterRange {
@@ -175,7 +193,8 @@
 
   p {
     margin: 0;
-    color: #666;
+    color: var(--text-color);
+    opacity: 0.75;
   }
 }
 
@@ -198,7 +217,7 @@
 
 .time {
   font-size: 0.875rem;
-  color: #666;
+  color: inherit;
 }
 
 .ticketButton {

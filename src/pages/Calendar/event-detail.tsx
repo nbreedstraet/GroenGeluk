@@ -9,6 +9,9 @@ import svg1 from "../../assets/tekeningen/Tekening-15.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-16.svg?raw";
 import { vertaalVeld } from "../../lib/vertaal";
 import { formatTijd } from "../../lib/tijd";
+import { useTheme } from "../../context/ThemeContext";
+import { themeForEventType } from "../../lib/eventTheme";
+import { applyThemeColors } from "../../lib/applyThemeColors";
 
 type I18n = Record<string, string> | null;
 
@@ -53,6 +56,7 @@ export default function EventDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const { previewTheme, resetTheme } = useTheme();
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -80,6 +84,19 @@ export default function EventDetail() {
 
     if (id) fetchEvent();
   }, [id]);
+
+  useEffect(() => {
+    return () => {
+      resetTheme();
+    };
+  }, [resetTheme]);
+
+  useEffect(() => {
+    if (!event) return;
+    previewTheme(
+      themeForEventType(event.type, vertaalVeld(event.type_i18n, i18n.language)),
+    );
+  }, [event, i18n.language, previewTheme]);
 
   if (loading) {
     return (
@@ -149,7 +166,7 @@ export default function EventDetail() {
 
       <div
         className={styles.description}
-        dangerouslySetInnerHTML={{ __html: description }}
+        dangerouslySetInnerHTML={{ __html: applyThemeColors(description) }}
       />
 
       {event.ticket_url && (

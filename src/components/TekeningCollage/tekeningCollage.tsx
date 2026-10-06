@@ -60,7 +60,7 @@ function processKaderSvg(svg: string, color: string): string {
   html = html.replace(/fill="#[0-9a-fA-F]+"/gi, 'fill="none"');
   html = html.replace(/stroke="#[0-9a-fA-F]+"/gi, `stroke="${color}"`);
   html = html.replace(/\s(width|height)="[^"]*"/g, "");
-  html = html.replace(/<svg\b/, '<svg width="100%" height="100%"');
+  html = html.replace(/<svg\b/, `<svg fill="${color}" width="100%" height="100%"`);
   html = html.replace(/<svg\b/, '<svg overflow="visible"');
 
   return html;

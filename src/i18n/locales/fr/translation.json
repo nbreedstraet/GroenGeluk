@@ -51,6 +51,7 @@
     "backToNews": "Retour aux actualités",
     "backToOverview": "← Retour à l'aperçu",
     "loading": "Chargement de l'article...",
+    "sources": "Sources",
     "form": {
       "requiredTitle": "Veuillez saisir un titre.",
       "requiredAuthor": "Veuillez saisir le nom de l'auteur.",

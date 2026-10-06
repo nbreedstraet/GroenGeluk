@@ -16,6 +16,7 @@ type NewsItem = {
   schrijver: string;
   content: string;
   content_i18n: Record<string, string> | null;
+  bronnen: string | null;
   category: string;
   category_i18n: Record<string, string> | null;
   createdAt: string;
@@ -73,6 +74,10 @@ export default function NewsDetail() {
   const content = vertaalVeld(item.content_i18n, i18n.language) || item.content;
   const category =
     vertaalVeld(item.category_i18n, i18n.language) || item.category;
+  const bronnen = (item.bronnen || "")
+    .split(/\r?\n/)
+    .map((bron) => bron.trim())
+    .filter(Boolean);
 
   return (
     <div className={styles.container}>
@@ -92,6 +97,30 @@ export default function NewsDetail() {
         className={styles.content}
         dangerouslySetInnerHTML={{ __html: content }}
       />
+
+      {bronnen.length > 0 && (
+        <div className={styles.sources}>
+          <h2 className={styles.sourcesTitle}>{t("news.sources")}</h2>
+          <ul className={styles.sourcesList}>
+            {bronnen.map((bron) => (
+              <li key={bron}>
+                {/^https?:\/\//i.test(bron) ? (
+                  <a
+                    className={styles.sourceLink}
+                    href={bron}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {bron}
+                  </a>
+                ) : (
+                  bron
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

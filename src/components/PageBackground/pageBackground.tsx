@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import { useTheme, themes } from "../../context/ThemeContext";
 import { processSvg } from "../../lib/processSvg";
 import styles from "./pageBackground.module.scss";
@@ -29,8 +29,12 @@ export default function PageBackground({
   const { theme } = useTheme();
   const color = themes[theme].text;
 
-  const raws = svgRaws.slice(0, 2);
-  const [processed] = useState(() => raws.map((svg) => processSvg(svg, color)));
+  const raw0 = svgRaws[0];
+  const raw1 = svgRaws[1];
+  const processed = useMemo(
+    () => [raw0, raw1].map((svg) => (svg ? processSvg(svg, color) : "")),
+    [raw0, raw1, color],
+  );
 
   return (
     <div className={styles.background} style={{ opacity }} aria-hidden="true">

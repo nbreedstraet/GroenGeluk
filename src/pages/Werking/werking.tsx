@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./werking.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
 import svg1 from "../../assets/tekeningen/Tekening-21.svg?raw";
@@ -10,22 +10,20 @@ import { useTheme } from "../../context/ThemeContext";
 
 export default function Contact() {
   const { t } = useTranslation();
-  const { theme, setTheme } = useTheme();
-
-  const baseTheme = useRef(theme);
+  const { previewTheme, resetTheme } = useTheme();
 
   useEffect(() => {
     return () => {
-      setTheme(baseTheme.current);
+      resetTheme();
     };
-  }, []);
+  }, [resetTheme]);
 
   const handleEnter = (hoverTheme: "green" | "blue" | "red") => {
-    setTheme(hoverTheme);
+    previewTheme(hoverTheme);
   };
 
   const handleLeave = () => {
-    setTheme(baseTheme.current);
+    resetTheme();
   };
 
   return (

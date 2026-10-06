@@ -20,7 +20,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
         <Navigation />
         <main style={{ flex: 1 }}>
           <Outlet />

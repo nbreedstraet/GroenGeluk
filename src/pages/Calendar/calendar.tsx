@@ -9,6 +9,8 @@ import svg1 from "../../assets/tekeningen/Tekening-19.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-20.svg?raw";
 import { vertaalVeld } from "../../lib/vertaal";
 import { formatTijd } from "../../lib/tijd";
+import { useTheme } from "../../context/ThemeContext";
+import { themeForEventType } from "../../lib/eventTheme";
 
 type I18n = Record<string, string> | null;
 
@@ -97,6 +99,7 @@ function toDateKey(date?: string | null): string {
 export default function Calendar() {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const { previewTheme, resetTheme } = useTheme();
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -111,6 +114,10 @@ export default function Calendar() {
     fitSelectToText(typeSelectRef.current);
     fitSelectToText(locationSelectRef.current);
   });
+
+  useEffect(() => {
+    resetTheme();
+  }, [resetTheme]);
 
   useEffect(() => {
     async function fetchEvents() {
@@ -208,33 +215,37 @@ export default function Calendar() {
         </p>
       </div>
       <div className={styles.filters}>
-        <select
-          ref={typeSelectRef}
-          value={filterType}
-          onChange={(e) => setFilterType(e.target.value)}
-          className={styles.filterSelect}
-        >
-          <option value="">{t("calendar.allTypes")}</option>
-          {types.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
+        <span className={styles.selectWrap}>
+          <select
+            ref={typeSelectRef}
+            value={filterType}
+            onChange={(e) => setFilterType(e.target.value)}
+            className={styles.filterSelect}
+          >
+            <option value="">{t("calendar.allTypes")}</option>
+            {types.map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </span>
 
-        <select
-          ref={locationSelectRef}
-          value={filterLocation}
-          onChange={(e) => setFilterLocation(e.target.value)}
-          className={styles.filterSelect}
-        >
-          <option value="">{t("calendar.allLocations")}</option>
-          {locations.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
+        <span className={styles.selectWrap}>
+          <select
+            ref={locationSelectRef}
+            value={filterLocation}
+            onChange={(e) => setFilterLocation(e.target.value)}
+            className={styles.filterSelect}
+          >
+            <option value="">{t("calendar.allLocations")}</option>
+            {locations.map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </span>
 
         <div className={styles.filterRange}>
           <span className={styles.filterRangeLabel}>
@@ -268,12 +279,21 @@ export default function Calendar() {
       <div className={styles.eventList}>
         {filteredEvents.map((event: Event) => {
           const { dag, maand } = formatDate(event.date, t);
+          const eventTheme = themeForEventType(
+            event.type,
+            tr(event.type_i18n, event.type),
+          );
 
           return (
             <div
               key={event.id}
               className={styles.eventCard}
-              onClick={() => navigate(`/calendar/${event.id}`)}
+              onMouseEnter={() => previewTheme(eventTheme)}
+              onMouseLeave={resetTheme}
+              onClick={() => {
+                previewTheme(eventTheme);
+                navigate(`/calendar/${event.id}`);
+              }}
             >
               <div className={styles.datum}>
                 <span className={styles.dag}>{dag}</span>
