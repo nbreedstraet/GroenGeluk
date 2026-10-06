@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import { useTheme, themes } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher/languageSwitcher";
+import hamburgerSvg from "../../assets/hamburger.svg?raw";
+import kruisjeSvg from "../../assets/kruisje.svg?raw";
+
+const withCurrentColor = (svg: string) =>
+  svg.replace(/<svg\b/, '<svg fill="currentColor"');
 
 const navItems = [
   { key: "nav.home", to: "/home" },
@@ -74,10 +79,19 @@ const Navigation = () => {
         <img src={themeImages[theme]} alt="Thema" className={styles.image} />
       </Link>
 
-      <div className={styles.hamburger} onClick={toggleMenu}>
-        <div className={`${styles.bar} ${isMenuOpen ? styles.open : ""}`}></div>
-        <div className={`${styles.bar} ${isMenuOpen ? styles.open : ""}`}></div>
-        <div className={`${styles.bar} ${isMenuOpen ? styles.open : ""}`}></div>
+      <div
+        className={styles.hamburger}
+        onClick={toggleMenu}
+        role="button"
+        aria-label={isMenuOpen ? "Menu sluiten" : "Menu openen"}
+        aria-expanded={isMenuOpen}
+      >
+        <span
+          className={styles.icon}
+          dangerouslySetInnerHTML={{
+            __html: withCurrentColor(isMenuOpen ? kruisjeSvg : hamburgerSvg),
+          }}
+        />
       </div>
 
       <div

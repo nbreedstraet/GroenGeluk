@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./event-detail.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
+import Loader from "../../components/Loader/loader";
 import svg1 from "../../assets/tekeningen/Tekening-15.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-16.svg?raw";
 import { vertaalVeld } from "../../lib/vertaal";
@@ -83,7 +84,7 @@ export default function EventDetail() {
   if (loading) {
     return (
       <div className={styles.container}>
-        <p>{t("event.loading")}</p>
+        <Loader label={t("event.loading")} />
       </div>
     );
   }

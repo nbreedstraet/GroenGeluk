@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "../News/news-detail.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
+import Loader from "../../components/Loader/loader";
 import svg1 from "../../assets/tekeningen/Tekening-17.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-18.svg?raw";
 import { vertaalVeld } from "../../lib/vertaal";
@@ -49,7 +50,13 @@ export default function onzeKeukenDetail() {
     load();
   }, [id]);
 
-  if (loading) return null;
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <Loader label={t("keuken.loading")} />
+      </div>
+    );
+  }
 
   if (!item) {
     return (

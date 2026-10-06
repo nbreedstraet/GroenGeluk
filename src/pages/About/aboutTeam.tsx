@@ -46,7 +46,15 @@ export default function AboutTeam() {
       : null;
 
   if (loading) {
-    return <div className={styles.teamContent}>{t("common.loading")}</div>;
+    return (
+      <div className={styles.teamContent}>
+        <div
+          className={styles.loader}
+          role="status"
+          aria-label={t("common.loading")}
+        />
+      </div>
+    );
   }
 
   return (

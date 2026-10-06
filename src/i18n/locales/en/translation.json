@@ -50,6 +50,7 @@
     "notFound": "Article not found",
     "backToNews": "Back to news",
     "backToOverview": "← Back to overview",
+    "loading": "Loading article...",
     "form": {
       "requiredTitle": "Enter a title.",
       "requiredAuthor": "Enter the author's name.",
@@ -87,7 +88,8 @@
     "crossAbout": "Get to know us better"
   },
   "keuken": {
-    "intro": "In our kitchen we happily share our favourite seasonal recipes. From hearty stews to colourful salads: if you love cooking along with honest, plant-based dishes, you've come to the right place."
+    "intro": "In our kitchen we happily share our favourite seasonal recipes. From hearty stews to colourful salads: if you love cooking along with honest, plant-based dishes, you've come to the right place.",
+    "loading": "Loading recipe..."
   },
   "calendar": {
     "loading": "Loading events...",
@@ -253,5 +255,8 @@
     "nl": "Nederlands",
     "en": "English",
     "fr": "Français"
+  },
+  "common": {
+    "loading": "Loading teammembers..."
   }
 }

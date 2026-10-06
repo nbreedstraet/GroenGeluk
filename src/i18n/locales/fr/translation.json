@@ -50,6 +50,7 @@
     "notFound": "Article introuvable",
     "backToNews": "Retour aux actualités",
     "backToOverview": "← Retour à l'aperçu",
+    "loading": "Chargement de l'article...",
     "form": {
       "requiredTitle": "Veuillez saisir un titre.",
       "requiredAuthor": "Veuillez saisir le nom de l'auteur.",
@@ -87,7 +88,8 @@
     "crossAbout": "Apprenez à mieux nous connaître"
   },
   "keuken": {
-    "intro": "Dans notre cuisine, nous partageons avec grand plaisir nos recettes saisonnières préférées. Des ragoûts généreux aux salades colorées : si vous aimez cuisiner des plats végétaux honnêtes, vous êtes au bon endroit."
+    "intro": "Dans notre cuisine, nous partageons avec grand plaisir nos recettes saisonnières préférées. Des ragoûts généreux aux salades colorées : si vous aimez cuisiner des plats végétaux honnêtes, vous êtes au bon endroit.",
+    "loading": "Chargement de la recette..."
   },
   "calendar": {
     "loading": "Chargement des événements...",
@@ -253,5 +255,8 @@
     "nl": "Nederlands",
     "en": "English",
     "fr": "Français"
+  },
+  "common": {
+    "loading": "Chargement des membres de l'équipe..."
   }
 }

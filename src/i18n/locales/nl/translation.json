@@ -50,6 +50,7 @@
     "notFound": "Artikel niet gevonden",
     "backToNews": "Terug naar nieuws",
     "backToOverview": "← Terug naar overzicht",
+    "loading": "Artikel laden...",
     "form": {
       "requiredTitle": "Vul een titel in.",
       "requiredAuthor": "Vul de naam van de schrijver in.",
@@ -87,7 +88,8 @@
     "crossAbout": "Leer ons beter kennen"
   },
   "keuken": {
-    "intro": "In onze keuken delen we met veel plezier onze favoriete seizoensgebonden recepten. Van hartige stoofpotjes tot kleurrijke salades: kook je graag mee met eerlijke, plantaardige gerechten, dan zit je hier goed."
+    "intro": "In onze keuken delen we met veel plezier onze favoriete seizoensgebonden recepten. Van hartige stoofpotjes tot kleurrijke salades: kook je graag mee met eerlijke, plantaardige gerechten, dan zit je hier goed.",
+    "loading": "Recept laden..."
   },
   "calendar": {
     "loading": "Evenementen laden...",
@@ -253,5 +255,8 @@
     "nl": "Nederlands",
     "en": "English",
     "fr": "Français"
+  },
+  "common": {
+    "loading": "Teamleden zijn aan het laden..."
   }
 }

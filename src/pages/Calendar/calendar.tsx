@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./calendar.module.scss";
 import PageBackground from "../../components/PageBackground/pageBackground";
+import Loader from "../../components/Loader/loader";
 import svg1 from "../../assets/tekeningen/Tekening-19.svg?raw";
 import svg2 from "../../assets/tekeningen/Tekening-20.svg?raw";
 import { vertaalVeld } from "../../lib/vertaal";
@@ -170,7 +171,7 @@ export default function Calendar() {
   if (loading) {
     return (
       <div className={styles.alles}>
-        <p>{t("calendar.loading")}</p>
+        <Loader label={t("calendar.loading")} />
       </div>
     );
   }

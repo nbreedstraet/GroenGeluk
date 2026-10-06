@@ -16,30 +16,27 @@
 
 .hamburger {
   display: flex;
-  flex-direction: column;
   cursor: pointer;
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 1000;
-  gap: 4px;
+  color: var(--text-color);
 
-  .bar {
-    width: 20px;
-    height: 2px;
-    background-color: var(--text-color);
+  .icon {
+    display: block;
+    width: 50px;
     transition: all 0.3s ease;
+    filter: blur(0.3px);
 
-    &.open {
-      &:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 6px);
-      }
-      &:nth-child(2) {
-        opacity: 0;
-      }
-      &:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-      }
+    :hover {
+      transform: scale(0.9);
+    }
+
+    :global(svg) {
+      display: block;
+      width: 100%;
+      height: auto;
     }
   }
 }
@@ -214,18 +211,8 @@ a {
     left: auto;
     right: 20px;
 
-    .bar {
-      width: 25px;
-      height: 3px;
-    }
-
-    .bar.open {
-      &:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      &:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-      }
+    .icon {
+      width: 36px;
     }
   }
 

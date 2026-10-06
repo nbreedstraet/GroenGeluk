@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "../../pages/Calendar/calendar.module.scss";
 import { formatTijd } from "../../lib/tijd";
+import Loader from "../Loader/loader";
 
 interface Event {
   id: number;
@@ -73,7 +74,7 @@ export default function EventsList() {
   }, []);
 
   if (loading) {
-    return <p>{t("calendar.loading")}</p>;
+    return <Loader label={t("calendar.loading")} />;
   }
 
   if (error) {
