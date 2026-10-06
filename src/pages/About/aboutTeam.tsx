@@ -45,6 +45,9 @@ export default function AboutTeam() {
       ? supabase.storage.from("team-images").getPublicUrl(path).data.publicUrl
       : null;
 
+  if (loading) {
+    return <div className={styles.teamContent}>{t("common.loading")}</div>;
+  }
 
   return (
     <div className={styles.teamContent}>
