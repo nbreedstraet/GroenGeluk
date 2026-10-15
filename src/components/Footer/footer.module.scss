@@ -137,6 +137,11 @@
     text-align: center;
   }
 
+  .link,
+  .placeholder {
+    font-size: 0.83rem;
+  }
+
   .linkList {
     flex-direction: column;
     gap: 0.4rem;

@@ -196,11 +196,11 @@ a {
 @media (max-width: 1000px) {
   .mobileLogo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     position: fixed;
     top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px;
+    transform: none;
     z-index: 1001;
     pointer-events: none;
 
