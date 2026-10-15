@@ -44,12 +44,13 @@ body {
 @media (max-width: 1000px) {
   .collageOverlay {
     position: relative;
-    top: calc(10vh + 10px + 1rem);
+    top: 5%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   .intro {

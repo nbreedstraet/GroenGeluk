@@ -30,7 +30,7 @@ const KADERS = [
 const links = [
   { key: "nav.about", link: "/about" },
   { key: "nav.news", link: "/news" },
-  { key: "nav.keuken", link: "/keuken" },
+  // { key: "nav.keuken", link: "/keuken" },
   { key: "nav.calendar", link: "/calendar" },
   { key: "nav.support", link: "/support" },
   { key: "nav.volunteers", link: "/volunteers" },
@@ -49,8 +49,6 @@ function shuffle<T>(arr: T[]): T[] {
 const breakpointColumns = {
   default: 3,
   1000: 1,
-  900: 2,
-  500: 1,
 };
 
 function processKaderSvg(svg: string, color: string): string {
@@ -60,7 +58,10 @@ function processKaderSvg(svg: string, color: string): string {
   html = html.replace(/fill="#[0-9a-fA-F]+"/gi, 'fill="none"');
   html = html.replace(/stroke="#[0-9a-fA-F]+"/gi, `stroke="${color}"`);
   html = html.replace(/\s(width|height)="[^"]*"/g, "");
-  html = html.replace(/<svg\b/, `<svg fill="${color}" width="100%" height="100%"`);
+  html = html.replace(
+    /<svg\b/,
+    `<svg fill="${color}" width="100%" height="100%"`,
+  );
   html = html.replace(/<svg\b/, '<svg overflow="visible"');
 
   return html;
@@ -227,13 +228,12 @@ export default function TekeningCollage({
     const items: ((typeof tekeningen)[number] | (typeof kaders)[number])[] = [
       tekeningen[0],
       tekeningen[1],
-      kaders[0],
+      kaders[1],
       tekeningen[2],
       tekeningen[3],
-      kaders[1],
+      kaders[0],
       tekeningen[4],
       tekeningen[5],
-      tekeningen[6],
     ];
 
     return intro

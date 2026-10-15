@@ -14,6 +14,12 @@ const footerLinks = [
   { key: "nav.cause", to: "/cause" },
 ];
 
+const Mail = ({ address }: { address: string }) => (
+  <a href={`mailto:${address}`} className={styles.link}>
+    {address}
+  </a>
+);
+
 const Footer = () => {
   const { t } = useTranslation();
 
@@ -34,16 +40,66 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className={styles.section}>
+          <div className={styles.sectiontwo}>
             <h4 className={styles.heading}>{t("footer.info")}</h4>
-            <p className={styles.placeholder}>{t("footer.infoPlaceholder")}</p>
-            <p className={styles.placeholder}>
-              {t("footer.adresfirst")} <br /> {t("footer.adressecond")}
-            </p>
-            <p className={styles.placeholder}>{t("footer.mail")}</p>
-            <p className={styles.placeholder}>{t("footer.rekening")}</p>
+
+            <div className={styles.sectiontwoColumns}>
+              <div className={styles.secondsect}>
+                <p className={styles.placeholder}>
+                  {t("footer.infoPlaceholder")}
+                </p>
+                <p className={styles.placeholder}>
+                  <a href="https://maps.app.goo.gl/FKUjVztLU93JEZwf9">
+                    {t("footer.adresfirst")} <br /> {t("footer.adressecond")}
+                  </a>
+                </p>
+                <p className={styles.placeholder}>{t("footer.rekening")}</p>
+              </div>
+
+              <div className={styles.secondsect}>
+                <table className={styles.contactTable}>
+                  <tbody>
+                    <tr>
+                      <td>Algemeen</td>
+                      <td>
+                        <Mail address="info@groengelukvzw.be" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Keuken</td>
+                      <td>
+                        <Mail address="ferrethomas@groengelukvzw.be" />
+                        <br />
+                        <Mail address="robingwarrinnier@groengelukvzw.be" />
+                        <br />
+                        <Mail address="franmondelaers@groengelukvzw.be" />
+                        <br />
+                        <Mail address="sienbosmans@groengelukvzw.be" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Communicatie</td>
+                      <td>
+                        <Mail address="chloevanuytven@groengelukvzw.be" />
+                        <br />
+                        <Mail address="mirthefannes@groengelukvzw.be" />
+                        <br />
+                        <Mail address="ninabreedstraet@groengelukvzw.be" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Vrijwilligerscoördinatie</td>
+                      <td>
+                        <Mail address="lenaverschraegen@groengelukvzw.be" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
+
         <div className={styles.bottom}>
           <p className={styles.copyright}>{t("footer.copyright")}</p>
         </div>

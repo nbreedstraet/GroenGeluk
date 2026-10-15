@@ -87,7 +87,12 @@ export default function AboutTeam() {
                   {t("about.teamTipLabel")} <br />
                   {tr(member.favoriteVeganTip_i18n, member.favoriteVeganTip)}
                 </p>
-                <p className={styles.memberContact}>{member.contact}</p>
+                <a
+                  href={`mailto:${member.contact}`}
+                  className={styles.memberContact}
+                >
+                  {member.contact}
+                </a>
               </div>
             </div>
           );

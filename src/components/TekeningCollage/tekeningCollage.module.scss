@@ -97,8 +97,8 @@ link,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(80px, 15vh, 220px);
-  height: clamp(80px, 15vh, 220px);
+  width: clamp(50px, 20vh, 280px);
+  height: clamp(50px, 20vh, 280px);
   object-fit: cover;
   z-index: 1;
   clip-path: circle();
@@ -107,7 +107,7 @@ link,
 .kaderOverlay {
   position: absolute;
   z-index: 2;
-  width: 80%;
+  width: 95%;
   pointer-events: none;
   background-color: transparent !important;
 
@@ -184,11 +184,11 @@ link,
   }
 }
 
-@media (max-width: 1000px) {
-  .item {
-    display: none;
-  }
-}
+// @media (max-width: 1000px) {
+//   .item {
+//     display: none;
+//   }
+// }
 
 @media (max-width: 1000px) {
   .wrapper {

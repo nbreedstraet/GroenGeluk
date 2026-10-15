@@ -16,6 +16,9 @@
 
 .hamburger {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
   position: fixed;
   top: 20px;
@@ -211,9 +214,13 @@ a {
     left: auto;
     right: 20px;
 
+    .menuLabel {
+      display: block;
+    }
+
     .icon {
-      width: 36px;
-      filter: blur(0.01px);
+      width: 56px;
+      filter: none;
     }
   }
 

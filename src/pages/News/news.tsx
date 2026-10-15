@@ -22,10 +22,33 @@ type NewsItem = {
 
 function stripHtml(html: string): string {
   const doc = new DOMParser().parseFromString(html, "text/html");
-  return doc.body.textContent || "";
+
+  // Quill's lege hulp-span negeren
+  doc.querySelectorAll(".ql-ui").forEach((el) => el.remove());
+
+  // Lijstitems: bolletje of nummer ervoor, regeleinde erna
+  const counters = new WeakMap<Element, number>();
+  doc.querySelectorAll("li").forEach((li) => {
+    const parent = li.parentElement;
+    let prefix = "• ";
+    if (li.getAttribute("data-list") === "ordered") {
+      const n = (counters.get(parent!) ?? 0) + 1;
+      counters.set(parent!, n);
+      prefix = `${n}. `;
+    }
+    li.insertBefore(doc.createTextNode(prefix), li.firstChild);
+    li.appendChild(doc.createTextNode("\n"));
+  });
+
+  // Andere blokken ook laten eindigen met een regeleinde
+  doc.querySelectorAll("p, h1, h2, h3, h4, br").forEach((el) => {
+    el.appendChild(doc.createTextNode("\n"));
+  });
+
+  return (doc.body.textContent || "").replace(/\n{2,}/g, "\n").trim();
 }
 
-function summarize(text: string, maxLen = 200): string {
+function summarize(text: string, maxLen = 100): string {
   const clean = stripHtml(text);
   if (clean.length <= maxLen) return clean;
   return clean.slice(0, maxLen).trimEnd() + "…";
@@ -51,13 +74,7 @@ export default function News() {
         return;
       }
 
-      setItems(
-        (data ?? []).filter(
-          (i) =>
-            i.category !== "Recepten" &&
-            !String(i.category).toLowerCase().startsWith("recepten"),
-        ),
-      );
+      setItems(data ?? []);
     }
 
     loadNews();
