@@ -209,6 +209,15 @@ link,
     gap: 0.15rem;
   }
 
+  .item {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    svg {
+      filter: blur(0.2px);
+      width: 85%;
+    }
+  }
+
   .itemKader {
     height: 28vh;
   }
