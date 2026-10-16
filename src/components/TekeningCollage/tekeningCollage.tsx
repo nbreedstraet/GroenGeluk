@@ -114,7 +114,7 @@ function KaderTile({
   color,
   link,
   label,
-  t,
+  // t,
   offset,
 }: {
   svgRaw: string;
