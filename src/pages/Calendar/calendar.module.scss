@@ -208,8 +208,8 @@
   display: inline-block;
   font-size: 0.75rem;
   padding: 0.5rem 1rem;
-  background: var(--text-color);
-  color: var(--bg-color);
+  background: var(--bg-color);
+  color: var(--text-color);
   font-weight: 500;
   margin-bottom: 0.5rem;
   border: solid 2px var(--text-color);
@@ -533,7 +533,7 @@
   }
 
   .eventInfo {
-    text-align: left;
+    text-align: center;
     align-self: center;
   }
 
