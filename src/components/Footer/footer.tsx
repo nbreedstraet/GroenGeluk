@@ -70,7 +70,7 @@ const Footer = () => {
                       <td>
                         <Mail address="ferrethomas@groengelukvzw.be" />
                         <br />
-                        <Mail address="robingwarrinnier@groengelukvzw.be" />
+                        <Mail address="robinwarrinnier@groengelukvzw.be" />
                         <br />
                         <Mail address="franmondelaers@groengelukvzw.be" />
                         <br />
@@ -82,7 +82,7 @@ const Footer = () => {
                       <td>
                         <Mail address="chloevanuytven@groengelukvzw.be" />
                         <br />
-                        <Mail address="mirthefannes@groengelukvzw.be" />
+                        <Mail address="mirtefannes@groengelukvzw.be" />
                         <br />
                         <Mail address="ninabreedstraet@groengelukvzw.be" />
                       </td>

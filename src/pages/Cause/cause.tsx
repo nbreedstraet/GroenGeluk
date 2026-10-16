@@ -50,13 +50,25 @@ export default function Cause() {
       </div>
 
       <div className={styles.crossLinks}>
-        <Link to="/calendar" className={styles.crossLink}>
+        <Link
+          to="/calendar"
+          className={styles.crossLink}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           {t("cause.crossCalendar")}
         </Link>
-        <Link to="/about" className={styles.crossLink}>
+        <Link
+          to="/about"
+          className={styles.crossLink}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           {t("cause.crossAbout")}
         </Link>
-        <Link to="/support" className={styles.crossLink}>
+        <Link
+          to="/support"
+          className={styles.crossLink}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           {t("cause.crossSupport")}
         </Link>
       </div>

@@ -340,13 +340,25 @@ export default function Calendar() {
       </div>
 
       <div className={styles.crossLinks}>
-        <Link to="/news" className={styles.crossLink}>
+        <Link
+          to="/news"
+          className={styles.crossLink}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           {t("calendar.crossNews")}
         </Link>
-        <Link to="/support" className={styles.crossLink}>
+        <Link
+          to="/support"
+          className={styles.crossLink}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           {t("calendar.crossSupport")}
         </Link>
-        <Link to="/cause" className={styles.crossLink}>
+        <Link
+          to="/cause"
+          className={styles.crossLink}
+          onClick={() => window.scrollTo(0, 0)}
+        >
           {t("calendar.crossCause")}
         </Link>
       </div>

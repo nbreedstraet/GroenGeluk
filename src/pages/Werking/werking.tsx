@@ -116,13 +116,25 @@ export default function Contact() {
         </div>
 
         <div className={styles.crossLinks}>
-          <Link to="/calendar" className={styles.crossLink}>
+          <Link
+            to="/calendar"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("werking.crossCalendar")}
           </Link>
-          <Link to="/support" className={styles.crossLink}>
+          <Link
+            to="/support"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("werking.crossSupport")}
           </Link>
-          <Link to="/volunteers" className={styles.crossLink}>
+          <Link
+            to="/volunteers"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("werking.crossVolunteers")}
           </Link>
         </div>

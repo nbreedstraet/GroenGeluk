@@ -44,13 +44,25 @@ export default function Support() {
         </div>
 
         <div className={styles.crossLinks}>
-          <Link to="/volunteers" className={styles.crossLink}>
+          <Link
+            to="/volunteers"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("support.crossVolunteers")}
           </Link>
-          <Link to="/calendar" className={styles.crossLink}>
+          <Link
+            to="/calendar"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("support.crossCalendar")}
           </Link>
-          <Link to="/about" className={styles.crossLink}>
+          <Link
+            to="/about"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("support.crossAbout")}
           </Link>
         </div>

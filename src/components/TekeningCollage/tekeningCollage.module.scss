@@ -97,11 +97,22 @@ link,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(50px, 20vh, 280px);
-  height: clamp(50px, 20vh, 280px);
+  width: clamp(50px, 20vh, 270px);
+  height: clamp(50px, 20vh, 270px);
   object-fit: cover;
   z-index: 1;
   clip-path: circle();
+  gap: 5%;
+  animation: kaderFade 0.8s ease;
+}
+
+@keyframes kaderFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .kaderOverlay {
@@ -133,6 +144,24 @@ link,
   text-align: center;
   z-index: 3;
   white-space: nowrap;
+}
+
+.photoUp {
+  transform: translate(-50%, calc(-50% - 1.5rem));
+}
+
+.photoDown {
+  transform: translate(-50%, calc(-50% + 1.5rem));
+}
+
+@media (max-width: 1000px) {
+  .photoUp {
+    transform: translate(-50%, calc(-50% - 1rem));
+  }
+
+  .photoDown {
+    transform: translate(-50%, calc(-50% + 1rem));
+  }
 }
 
 .carouselBtn {
@@ -181,6 +210,10 @@ link,
     top: 50%;
     left: 50%;
     background-color: transparent !important;
+  }
+
+  & + & {
+    margin-top: 3rem;
   }
 }
 

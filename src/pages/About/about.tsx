@@ -49,13 +49,25 @@ export default function About() {
         {tab === "missie" && <AboutMissie />}
 
         <div className={styles.crossLinks}>
-          <Link to="/calendar" className={styles.crossLink}>
+          <Link
+            to="/calendar"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("about.crossCalendar")}
           </Link>
-          <Link to="/support" className={styles.crossLink}>
+          <Link
+            to="/support"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("about.crossSupport")}
           </Link>
-          <Link to="/volunteers" className={styles.crossLink}>
+          <Link
+            to="/volunteers"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("about.crossVolunteers")}
           </Link>
         </div>

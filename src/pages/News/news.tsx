@@ -150,10 +150,18 @@ export default function News() {
         </div>
 
         <div className={styles.crossLinks}>
-          <Link to="/calendar" className={styles.crossLink}>
+          <Link
+            to="/calendar"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("news.crossCalendar")}
           </Link>
-          <Link to="/about" className={styles.crossLink}>
+          <Link
+            to="/about"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("news.crossAbout")}
           </Link>
         </div>

@@ -23,8 +23,14 @@ const KADERS = [
     svgRaw: kader09Raw,
     bucket: "GroenGelukImages",
     link: "https://myalbum.com/folder/MwQdRdrNYuih/?invite=557f5e88-0a09-42d2-b917-32d75ee4bb3e",
+    offset: "up" as const,
   },
-  { svgRaw: kader10Raw, bucket: "GroenGelukGoedeDoelen", link: "/cause" },
+  {
+    svgRaw: kader10Raw,
+    bucket: "GroenGelukGoedeDoelen",
+    link: "/cause",
+    offset: "down" as const,
+  },
 ];
 
 const links = [
@@ -109,6 +115,7 @@ function KaderTile({
   link,
   label,
   t,
+  offset,
 }: {
   svgRaw: string;
   bucket: string;
@@ -116,6 +123,7 @@ function KaderTile({
   link?: string;
   label?: string;
   t: (key: string) => string;
+  offset?: "up" | "down";
 }) {
   const [photos, setPhotos] = useState<string[]>([]);
   const [index, setIndex] = useState(0);
@@ -132,42 +140,27 @@ function KaderTile({
     [svgRaw, color],
   );
 
-  const prev = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIndex((i) => (i - 1 + photos.length) % photos.length);
-  };
+  useEffect(() => {
+    if (photos.length < 2) return;
 
-  const next = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIndex((i) => (i + 1) % photos.length);
-  };
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % photos.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [photos.length]);
 
   const content = (
     <>
-      <button
-        className={`${styles.carouselBtn} ${styles.carouselBtnPrev}`}
-        onClick={prev}
-        aria-label={t("tekeningCollage.prevPhoto")}
-      >
-        ←
-      </button>
       {photos.length > 0 && (
         <img
           key={photos[index]}
           src={photos[index]}
           alt=""
-          className={styles.kaderPhoto}
+          className={`${styles.kaderPhoto} ${
+            offset === "up" ? styles.photoUp : styles.photoDown
+          }`}
         />
       )}
-      <button
-        className={`${styles.carouselBtn} ${styles.carouselBtnNext}`}
-        onClick={next}
-        aria-label={t("tekeningCollage.nextPhoto")}
-      >
-        →
-      </button>
       <div
         className={styles.kaderOverlay}
         dangerouslySetInnerHTML={{ __html: svgHtml }}
@@ -274,6 +267,7 @@ export default function TekeningCollage({
                 color={color}
                 link={item.link}
                 t={t}
+                offset={item.offset}
               />
             </div>
           );

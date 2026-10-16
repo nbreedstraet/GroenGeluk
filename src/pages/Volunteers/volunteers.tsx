@@ -37,13 +37,25 @@ export default function Volunteer() {
         <br />
 
         <div className={styles.crossLinks}>
-          <Link to="/about" className={styles.crossLink}>
+          <Link
+            to="/about"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("volunteers.crossAbout")}
           </Link>
-          <Link to="/support" className={styles.crossLink}>
+          <Link
+            to="/support"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("volunteers.crossSupport")}
           </Link>
-          <Link to="/calendar" className={styles.crossLink}>
+          <Link
+            to="/calendar"
+            className={styles.crossLink}
+            onClick={() => window.scrollTo(0, 0)}
+          >
             {t("volunteers.crossCalendar")}
           </Link>
         </div>

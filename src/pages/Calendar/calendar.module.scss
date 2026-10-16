@@ -159,6 +159,9 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
+
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .datum {
@@ -186,15 +189,18 @@
 
 .eventInfo {
   flex: 1;
+  min-width: 0;
 
   h3 {
     margin: 0.25rem 0 0.5rem 0;
+    overflow-wrap: anywhere;
   }
 
   p {
     margin: 0;
     color: var(--text-color);
     opacity: 0.75;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -238,6 +244,9 @@
     color: var(--text-color);
     cursor: pointer;
   }
+
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* submit page */
@@ -481,35 +490,58 @@
     max-width: 100%;
     padding: 1rem;
     padding-top: 6rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
-  .intro {
+  .filters {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .selectWrap {
+    width: 100%;
+  }
+
+  .filterSelect {
+    width: 100% !important;
+  }
+
+  .filterRange {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filterRangeDivider {
+    display: none;
   }
 
   .eventCard {
     flex-direction: row;
     align-items: center;
     gap: 0.75rem;
+    padding: 0.75rem;
   }
 
   .datum {
-    margin-right: 1rem;
+    min-width: 56px;
+    margin-right: 0;
+    padding: 0.25rem;
   }
 
   .eventInfo {
-    flex: 1;
     text-align: left;
     align-self: center;
-
-    h3 {
-      text-align: left;
-    }
   }
 
   .ticketButton {
     align-self: center;
     margin-left: auto;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
   }
 
   .page {
