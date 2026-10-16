@@ -548,19 +548,33 @@
     max-width: 100%;
     padding: 6rem 1rem 2rem;
   }
+
+  .intro {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 420px) {
   .eventCard {
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 
   .eventInfo {
     flex: 1 1 calc(100% - 70px);
+    justify-content: center;
+    align-items: center;
   }
 
   .ticketButton {
     margin-left: 0;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .intro {
+    flex-direction: column;
   }
 }
