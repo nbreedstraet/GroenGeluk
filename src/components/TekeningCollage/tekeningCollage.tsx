@@ -149,6 +149,12 @@ function KaderTile({
     return () => clearInterval(id);
   }, [photos.length]);
 
+  useEffect(() => {
+    if (photos.length < 2) return;
+    const next = new Image();
+    next.src = photos[(index + 1) % photos.length];
+  }, [index, photos]);
+
   const content = (
     <>
       {photos.length > 0 && (
