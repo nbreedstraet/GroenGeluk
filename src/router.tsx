@@ -15,6 +15,7 @@ import Support from "./pages/Support/support";
 import Volunteers from "./pages/Volunteers/volunteers";
 import SubmitPage from "./pages/News/submitPage";
 import Cause from "./pages/Cause/cause";
+import ScrollToTop from "./components/scrollToTop/scrollToTop";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       <div
         style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
+        <ScrollToTop />
         <Navigation />
         <main style={{ flex: 1 }}>
           <Outlet />
